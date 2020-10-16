@@ -25,4 +25,20 @@ namespace WebAPI.Models
         public int Id_evento { get; set; }
 
     }
+    public class MercadoDTO
+    {
+        public MercadoDTO(double over_under, double cuota_over, double cuota_under)
+        {
+            Over_under = over_under;
+            Cuota_over = cuota_over;
+            Cuota_under = cuota_under;
+            
+        }
+
+        public double Over_under { get; set; }
+        public double Cuota_over { get; set; }
+        public double Cuota_under { get; set; }
+        
+
+    }
 }

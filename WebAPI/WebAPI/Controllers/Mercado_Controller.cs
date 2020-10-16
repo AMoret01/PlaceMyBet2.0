@@ -11,10 +11,10 @@ namespace WebAPI.Controllers
     public class Mercado_Controller : ApiController
     {
         // GET: api/Mercado_
-        public IEnumerable<Mercado> Get()
+        public IEnumerable<MercadoDTO> Get()
         {
             var repositorio = new Repositorio_Mercado();
-            List<Mercado> mercados = repositorio.retrieve();
+            List<MercadoDTO> mercados = repositorio.retrieveDTO();
             return mercados;
         }
 

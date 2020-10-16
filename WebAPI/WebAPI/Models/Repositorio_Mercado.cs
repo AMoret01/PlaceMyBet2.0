@@ -44,5 +44,32 @@ namespace WebAPI.Models
                 return null;
             }
         }
+        internal List<MercadoDTO> retrieveDTO()
+        {
+            MySqlConnection connection = conexion();
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT `over/under`,`cuota over`,`cuota under` FROM mercado";
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                List<MercadoDTO> mercado = new List<MercadoDTO>();
+
+                while (reader.Read())
+                {
+                    MercadoDTO e = new MercadoDTO(reader.GetDouble(0), reader.GetDouble(1), reader.GetDouble(2));
+                    mercado.Add(e);
+
+                }
+                connection.Close();
+                return mercado;
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Error al conectarse con la base de datos ");
+                return null;
+            }
+        }
     }
 }

@@ -44,5 +44,32 @@ namespace WebAPI.Models
                 return null;
             }
         }
+        internal List<EventoDTO> retrieveDTO()
+        {
+            MySqlConnection connection = conexion();
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT local,visitante,fecha FROM evento";
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                List<EventoDTO> evento = new List<EventoDTO>();
+
+                while (reader.Read())
+                {
+                    EventoDTO e = new EventoDTO(reader.GetString(0), reader.GetString(1), reader.GetMySqlDateTime(2).ToString());
+                    evento.Add(e);
+
+                }
+                connection.Close();
+                return evento;
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Error al conectarse con la base de datos ");
+                return null;
+            }
+        }
     }
 }

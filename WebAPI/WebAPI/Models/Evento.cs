@@ -21,6 +21,22 @@ namespace WebAPI.Models
         public  int Id_evento { get; set; }
 
     }
+    public class EventoDTO
+    {
+        public EventoDTO(string local, string visitante, string fecha)
+        {
+            Local = local;
+            Visitante = visitante;
+            Fecha = fecha;
+            
+        }
 
-    
+        public string Local { get; set; }
+        public string Visitante { get; set; }
+        public string Fecha { get; set; }
+        
+
+    }
+
+
 }

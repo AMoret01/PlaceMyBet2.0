@@ -44,5 +44,51 @@ namespace WebAPI.Models
                 return null;
             }
         }
+        internal List<ApuestasDTO> retrieveDTO()
+        {
+            MySqlConnection connection = conexion();
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT apuestas.`email`,apuestas.`over/under`,apuestas.`Dinero`,apuestas.`Tipo`,mercado.`cuota over`,mercado.`cuota under`,evento.`Fecha` FROM apuestas INNER JOIN mercado ON apuestas.`over/under` = mercado.`over/under` INNER JOIN evento ON mercado.`Id evento` = evento.`Id evento`;";
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                List<ApuestasDTO> apuestas = new List<ApuestasDTO>();
+
+                while (reader.Read())
+                {
+                    ApuestasDTO e = new ApuestasDTO(reader.GetString(0), reader.GetDouble(1), reader.GetString(2), reader.GetString(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetString(6));
+                    apuestas.Add(e);
+
+                }
+                connection.Close();
+                return apuestas;
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Error al conectarse con la base de datos ");
+                return null;
+            }
+        }
+        internal void Save(Apuestas ap)
+        {
+            MySqlConnection conectar = conexion();
+            MySqlCommand command = conectar.CreateCommand();
+            command.CommandText = "INSERT INTO apuestas (`Id`, `email`, `over/under`,`Tipo`, `Dinero`) values ('" + ap.Id + "','" + ap.Email + "','" + ap.Over_under + "','" + ap.Tipo + "','" + ap.Dinero + "');";
+            Debug.WriteLine("comando " + command.CommandText);
+            try
+            {
+                conectar.Open();
+                command.ExecuteNonQuery();
+                conectar.Close();
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Se ha producido un error de conexión");
+            }
+
+        }
+
     }
 }

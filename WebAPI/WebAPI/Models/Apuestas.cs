@@ -25,4 +25,30 @@ namespace WebAPI.Models
 
 
     }
+    public class ApuestasDTO
+    {
+        public ApuestasDTO(string email, double over_under, string dinero, string tipo, double cuota_over, double cuota_under, string fecha)
+        {
+           
+            Email = email;
+            Over_under = over_under;
+            Dinero = dinero;
+            Tipo = tipo;
+            Cuota_over = cuota_over;
+            Cuota_under = cuota_under;
+            Fecha = fecha;
+        }
+
+        public string Email { get; set; }
+        public double Over_under { get; set; }
+        public string Dinero { get; set; }
+        public string Tipo { get; set; }
+        public double Cuota_over { get; set; }
+        public double Cuota_under { get; set; }
+        public string Fecha { get; set; }
+
+
+
+
+    }   
 }
