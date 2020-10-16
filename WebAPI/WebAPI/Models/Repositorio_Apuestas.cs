@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Web;
-using MySql.Data.MySqlClient;
 
 namespace WebAPI.Models
 {
@@ -71,22 +72,86 @@ namespace WebAPI.Models
                 return null;
             }
         }
-        internal void Save(Apuestas ap)
+        internal void Save(Apuestas a)
         {
-            MySqlConnection conectar = conexion();
-            MySqlCommand command = conectar.CreateCommand();
-            command.CommandText = "INSERT INTO apuestas (`Id`, `email`, `over/under`,`Tipo`, `Dinero`) values ('" + ap.Id + "','" + ap.Email + "','" + ap.Over_under + "','" + ap.Tipo + "','" + ap.Dinero + "');";
-            Debug.WriteLine("comando " + command.CommandText);
+            MySqlConnection con = conexion();
+            MySqlCommand command = con.CreateCommand();
+            CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
+            culInfo.NumberFormat.NumberDecimalSeparator = ".";
+
+            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+            culInfo.NumberFormat.PercentDecimalSeparator = ".";
+            culInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = culInfo;
+            command.CommandText = "select * from mercado where `Id evento`=" + a.Id + ";";
+            
             try
             {
-                conectar.Open();
-                command.ExecuteNonQuery();
-                conectar.Close();
+                con.Open();
+                MySqlDataReader res = command.ExecuteReader();
+                res.Read();
+                Debug.WriteLine("Recuperado: " + res.GetInt32(0) + " " + res.GetString(1) + " " + res.GetDouble(2) + " " + res.GetString(3) + " " + res.GetDouble(4));
+                Mercado m = new Mercado(res.GetDouble(0), res.GetDouble(1), res.GetDouble(2), res.GetDouble(3), res.GetDouble(4), res.GetInt32(5));
+
+
+
+                double dineroOver = 0;
+                double dineroUnder = 0;
+                if (a.Tipo == "over")
+                {
+                    dineroOver = a.Dinero + m.Dinero_over;
+                    dineroUnder = m.Dinero_under;
+                }
+                else
+                {
+                    dineroOver = m.Dinero_over;
+                    dineroUnder = a.Dinero + m.Dinero_under;
+                }
+
+                double cuotaOver = dineroOver / (dineroOver + dineroUnder);
+                cuotaOver = (1 / cuotaOver) * 0.95;
+                double cuotaUnder = dineroUnder / (dineroUnder + dineroOver);
+                cuotaUnder = (1 / cuotaUnder) * 0.95;
+                res.Close();
+                con.Close();
+                command.CommandText = "update mercado set `cuota over`=" + Math.Round(cuotaOver, 2) + ", `cuota under`=" + Math.Round(cuotaUnder, 2) + ", `dinero over`=" + dineroOver + ", `dinero under`=" + dineroUnder + " where `id evento`=" + a.Id + ";";
+                try
+                {
+                    con.Open();
+                    command.ExecuteNonQuery();
+                    con.Close();
+                    double cuotaApuesta = 0;
+                    if (a.Tipo == "under")
+                    {
+                        cuotaApuesta = cuotaUnder;
+                    }
+                    else
+                    {
+                        cuotaApuesta = cuotaOver;
+                    }
+                    command.CommandText = "insert into apuestas (tipoMercado, cuota, dinero, fecha, idMercado, gmail, tipoCuota) values (" + a.Tipo + ", " + Math.Round(cuotaApuesta, 2) + ", " + a.Dinero + ", '" + DateTime.Now.ToString("yyyy-MM-dd") + "', " + a.Id + ", '" + a.Email + "', '" + a.Tipo + "');";
+                    try
+                    {
+                        con.Open();
+                        command.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    catch (MySqlException e)
+                    {
+                        Debug.WriteLine("Se ha producido un error de conexion");
+                    }
+                }
+                catch (MySqlException e)
+                {
+                    Debug.WriteLine("Se ha producido un error de conexion");
+                }
+
             }
             catch (MySqlException e)
             {
-                Debug.WriteLine("Se ha producido un error de conexión");
+                Debug.WriteLine("Se ha producido un error de conexion");
             }
+
 
         }
 

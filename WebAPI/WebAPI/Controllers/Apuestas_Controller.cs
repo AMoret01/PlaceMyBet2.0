@@ -4,39 +4,50 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/Apuestas/{action}")]
     public class Apuestas_Controller : ApiController
     {
         // GET: api/Usuarios_
-        public IEnumerable<ApuestasDTO> Get()
+        [HttpGet]
+        [ActionName("Get")]
+        public IEnumerable<Apuestas> Get()
         {
-            var repositorio = new Repositorio_Apuestas();
-            List<ApuestasDTO> apuesta = repositorio.retrieveDTO();
-            return apuesta;
+            Repositorio_Apuestas rep = new Repositorio_Apuestas();
+            List<Apuestas> lista = rep.retrieve();
+            return lista;
+        }
+        [HttpGet]
+        [ActionName("GetDTO")]
+        public IEnumerable<ApuestasDTO> GetDTO()
+        {
+            Repositorio_Apuestas rep = new Repositorio_Apuestas();
+            List<ApuestasDTO> lista = rep.retrieveDTO();
+            return lista;
         }
 
-        // GET: api/Usuarios_/5
+        // GET: api/Apuestas/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Usuarios_
-        public void Post([FromBody]Apuestas ap)
+        public void Post([FromBody] Apuestas a)
         {
             var repo = new Repositorio_Apuestas();
-            repo.Save(ap);
+            repo.Save(a);
         }
 
-        // PUT: api/Usuarios_/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/Apuestas/5
+        public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE: api/Usuarios_/5
+        // DELETE: api/Apuestas/5
         public void Delete(int id)
         {
         }

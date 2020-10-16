@@ -1,40 +1,50 @@
-﻿using System;
+﻿using WebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-    public class Mercado_Controller : ApiController
+    [Route("api/Mercados/{action}")]
+    public class MercadosController : ApiController
     {
-        // GET: api/Mercado_
-        public IEnumerable<MercadoDTO> Get()
+        [HttpGet]
+        [ActionName("Get")]
+        public IEnumerable<Mercado> Get()
         {
-            var repositorio = new Repositorio_Mercado();
-            List<MercadoDTO> mercados = repositorio.retrieveDTO();
-            return mercados;
+            Repositorio_Mercado rep = new Repositorio_Mercado();
+            List<Mercado> lista = rep.retrieve();
+            return lista;
+        }
+        [HttpGet]
+        [ActionName("GetDTO")]
+        public IEnumerable<MercadoDTO> GetDTO()
+        {
+            Repositorio_Mercado rep = new Repositorio_Mercado();
+            List<MercadoDTO> lista = rep.retrieveDTO();
+            return lista;
         }
 
-        // GET: api/Mercado_/5
+
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Mercado_
-        public void Post([FromBody]string value)
+        // POST: api/Mercados
+        public void Post([FromBody] string value)
         {
         }
 
-        // PUT: api/Mercado_/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/Mercados/5
+        public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE: api/Mercado_/5
+        // DELETE: api/Mercados/5
         public void Delete(int id)
         {
         }
