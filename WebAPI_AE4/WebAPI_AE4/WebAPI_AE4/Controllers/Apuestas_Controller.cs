@@ -13,6 +13,7 @@ namespace WebAPI_AE4.Controllers
     public class Apuestas_Controller : ApiController
     {
         // GET: api/Apuesta
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [ActionName("Get")]
         public IEnumerable<Apuesta> Get()
@@ -30,14 +31,14 @@ namespace WebAPI_AE4.Controllers
             return apuestas;
         }
 
-        [Authorize(Roles = "Admin")]
+        
         public IEnumerable<Apuesta> GetUsuario(double tipo_Mercado, string email)
         {
             var repo = new Repositorio_Apuestas();
             List<Apuesta> apuesta = repo.GetUsuario(tipo_Mercado, email);
             return apuesta;
         }
-        [Authorize(Roles = "Admin")]
+        
         public IEnumerable<Apuesta> GetMercado(double tipo_Mercado, string email)
         {
             var repo = new Repositorio_Apuestas();
@@ -45,7 +46,7 @@ namespace WebAPI_AE4.Controllers
             return apuesta;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public void Post([FromBody] Apuesta apuesta)
         {
             var rep = new Repositorio_Apuestas();
