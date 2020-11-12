@@ -10,6 +10,7 @@ namespace WebAPI_AE3.Models
 {
     public class ApuestasRepository
     {
+        /*
         private MySqlConnection conexion()
         {
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=placemybet;SslMode=none";
@@ -17,9 +18,11 @@ namespace WebAPI_AE3.Models
             return conexion;
 
         }
+        */
 
         internal List<Apuesta> retrieve()
         {
+            /*
             MySqlConnection conectar = conexion();
             MySqlCommand command = conectar.CreateCommand();
             command.CommandText = "SELECT * FROM apuesta";
@@ -43,11 +46,13 @@ namespace WebAPI_AE3.Models
             {
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
-            }
+            }*/
+            return null;
         }
 
         internal List<ApuestaDTO> retrieveDTO()
         {
+            /*
             MySqlConnection conectar = conexion();
             MySqlCommand command = conectar.CreateCommand();
             command.CommandText = "SELECT email,tipo_Mercado,cuota,tipo_Cuota,dinero,fecha FROM apuesta;";
@@ -71,11 +76,13 @@ namespace WebAPI_AE3.Models
             {
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
-            }
+            }*/
+            return null;
         }
 
         internal void Save(Apuesta ap)
         {
+            /*
             MySqlConnection conectar = conexion();
             MySqlCommand command = conectar.CreateCommand();
             CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
@@ -150,9 +157,8 @@ namespace WebAPI_AE3.Models
             catch (MySqlException e)
             {
                 Debug.WriteLine("Se ha producido un error de conexion");
-            }
-
-
+            }*/
+            
         }
 
     }

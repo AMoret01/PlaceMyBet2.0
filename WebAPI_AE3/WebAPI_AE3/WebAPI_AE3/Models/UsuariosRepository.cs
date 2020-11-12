@@ -10,16 +10,19 @@ namespace WebAPI_AE3.Models
 {
     public class UsuariosRepository
     {
+        /*
         private MySqlConnection conexion()
         {
+            
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=placemybet;SslMode=none";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             return conexion;
 
-        }
+        }*/
 
         internal List<Usuario> retrieve()
         {
+            /*
             MySqlConnection conectar = conexion();
             MySqlCommand command = conectar.CreateCommand();
             command.CommandText = "SELECT * FROM usuario";
@@ -43,7 +46,8 @@ namespace WebAPI_AE3.Models
             {
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
-            }
+            }*/
+            return null;
         }
     }
 }

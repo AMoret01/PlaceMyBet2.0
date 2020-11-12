@@ -7,45 +7,49 @@ namespace WebAPI_AE3.Models
 {
     public class Apuesta
     {
-        public Apuesta(int id_Apuesta, double tipo_Mercado, double cuota, double dinero, string fecha, int id_Mercado, string email, string tipo_Cuota)
+        public int ApuestaId { get; set; }
+        public double tipoMercado { get; set; }
+        public double cuota { get; set; }
+        public double dinero { get; set; }
+        public string fecha { get; set; }
+        public string tipoCuota { get; set; }
+
+        public int MercadoId { get; set; }
+        public Mercado Mercado { get; set; }
+
+        public string UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
+
+        public Apuesta(int idApuesta, double tipoMercado, double cuota, double dinero, string fecha, int idMercado, string gmail, string tipoCuota)
         {
-            Id_Apuesta = id_Apuesta;
-            Tipo_Mercado = tipo_Mercado;
-            Cuota = cuota;
-            Dinero = dinero;
-            Fecha = fecha;
-            Id_Mercado = id_Mercado;
-            Email = email;
-            Tipo_Cuota = tipo_Cuota;
+            this.ApuestaId = idApuesta;
+            this.tipoMercado = tipoMercado;
+            this.cuota = cuota;
+            this.dinero = dinero;
+            this.fecha = fecha;
+            this.MercadoId = idMercado;
+            this.UsuarioId = gmail;
+            this.tipoCuota = tipoCuota;
         }
-
-        public int Id_Apuesta { get; set; }
-        public double Tipo_Mercado { get; set; }
-        public double Cuota { get; set; }
-        public double Dinero { get; set; }
-        public string Fecha { get; set; }
-        public int Id_Mercado { get; set; }
-        public string Email { get; set; }
-        public string Tipo_Cuota { get; set; }
+        public Apuesta() { }
     }
-
     public class ApuestaDTO
     {
-        public ApuestaDTO(string email, double tipo_Mercado, double cuota, string tipo_Cuota, double dinero, string fecha)
-        {
-            Email = email;
-            Tipo_Mercado = tipo_Mercado;
-            Cuota = cuota;
-            Tipo_Cuota = tipo_Cuota;
-            Dinero = dinero;
-            Fecha = fecha;
-        }
+        public double tipoMercado { get; set; }
+        public double cuota { get; set; }
+        public double dinero { get; set; }
+        public string fecha { get; set; }
+        public string gmail { get; set; }
+        public string tipoCuota { get; set; }
 
-        public string Email { get; set; }
-        public double Tipo_Mercado { get; set; }
-        public double Cuota { get; set; }
-        public string Tipo_Cuota { get; set; }
-        public double Dinero { get; set; }
-        public string Fecha { get; set; }
+        public ApuestaDTO(double tipoMercado, double cuota, double dinero, string fecha, string gmail, string tipoCuota)
+        {
+            this.tipoMercado = tipoMercado;
+            this.cuota = cuota;
+            this.dinero = dinero;
+            this.fecha = fecha;
+            this.gmail = gmail;
+            this.tipoCuota = tipoCuota;
+        }
     }
 }

@@ -7,37 +7,46 @@ namespace WebAPI_AE3.Models
 {
     public class Mercado
     {
-        public Mercado(int id_Mercado, double cuota_Over, double cuota_Under, double dinero_Over, double dinero_Under, double tipo_Mercado, int id_Evento)
-        {
-            Id_Mercado = id_Mercado;
-            Cuota_Over = cuota_Over;
-            Cuota_Under = cuota_Under;
-            Dinero_Over = dinero_Over;
-            Dinero_Under = dinero_Under;
-            Tipo_Mercado = tipo_Mercado;
-            Id_Evento = id_Evento;
-        }
+        public int MercadoId { get; set; }
+        public double CuotaOver { get; set; }
+        public double CuotaUnder { get; set; }
+        public double DineroOver { get; set; }
+        public double DineroUnder { get; set; }
+        public double TipoMercado { get; set; }
 
-        public int Id_Mercado { get; set; }
-        public double Cuota_Over { get; set; }
-        public double Cuota_Under { get; set; }
-        public double Dinero_Over { get; set; }
-        public double Dinero_Under { get; set; }
-        public double Tipo_Mercado { get; set; }
-        public int Id_Evento { get; set; }
+        public List<Apuesta> Apuestas { get; set; }
+
+        public int EventoId { get; set; }
+        public Evento Evento { get; set; }
+
+        public Mercado(int idMercado, double cuotaOver, double cuotaUnder, double dineroOver, double dineroUnder, double tipoMercado, int idEvento)
+        {
+            this.MercadoId = idMercado;
+            this.CuotaOver = cuotaOver;
+            this.CuotaUnder = cuotaUnder;
+            this.DineroOver = dineroOver;
+            this.DineroUnder = dineroUnder;
+            this.TipoMercado = tipoMercado;
+            this.EventoId = idEvento;
+        }
+        public Mercado() { }
     }
 
     public class MercadoDTO
     {
-        public MercadoDTO(double tipo_Mercado, double cuota_over, double cuota_under)
-        {
-            Tipo_Mercado = tipo_Mercado;
-            Cuota_over = cuota_over;
-            Cuota_under = cuota_under;
-        }
+        public double cuotaOver { get; set; }
+        public double cuotaUnder { get; set; }
+        public double dineroOver { get; set; }
+        public double dineroUnder { get; set; }
+        public double tipoMercado { get; set; }
 
-        public double Tipo_Mercado { get; set; }
-        public double Cuota_over { get; set; }
-        public double Cuota_under { get; set; }
+        public MercadoDTO(double cuotaOver, double cuotaUnder, double dineroOver, double dineroUnder, double tipoMercado)
+        {
+            this.cuotaOver = cuotaOver;
+            this.cuotaUnder = cuotaUnder;
+            this.dineroOver = dineroOver;
+            this.dineroUnder = dineroUnder;
+            this.tipoMercado = tipoMercado;
+        }
     }
 }

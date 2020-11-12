@@ -9,6 +9,7 @@ namespace WebAPI_AE3.Models
 {
     public class MercadosRepository
     {
+        /*
         private MySqlConnection conexion()
         {
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=placemybet;SslMode=none";
@@ -16,9 +17,11 @@ namespace WebAPI_AE3.Models
             return conexion;
 
         }
+        */
 
         internal List<Mercado> retrieve()
         {
+            /*
             MySqlConnection conectar = conexion();
             MySqlCommand command = conectar.CreateCommand();
             command.CommandText = "SELECT * FROM mercado";
@@ -42,11 +45,13 @@ namespace WebAPI_AE3.Models
             {
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
-            }
+            }*/
+            return null;
         }
 
         internal List<MercadoDTO> retrieveDTO()
         {
+            /*
             MySqlConnection conectar = conexion();
             MySqlCommand command = conectar.CreateCommand();
             command.CommandText = "SELECT tipo_Mercado,cuota_Over,cuota_Under FROM mercado";
@@ -70,7 +75,8 @@ namespace WebAPI_AE3.Models
             {
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
-            }
+            }*/
+            return null;
         }
     }
 }
