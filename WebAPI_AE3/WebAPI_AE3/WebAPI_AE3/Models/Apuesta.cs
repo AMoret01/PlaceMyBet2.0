@@ -14,13 +14,16 @@ namespace WebAPI_AE3.Models
         public string fecha { get; set; }
         public int MercadoId { get; set; }
         public Mercado Mercado { get; set; }
-
         public string UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
+        public string EventoId { get; set; }
+        public Evento Evento { get; set; }
+
+
 
         public Apuesta(int idApuesta, string tipo, double cuota, double dinero, string fecha, int idMercado, string gmail)
         {
-            this.ApuestaId = idApuesta;
+            ApuestaId = idApuesta;
             this.tipo = tipo;
             this.cuota = cuota;
             this.dinero = dinero;
@@ -30,23 +33,29 @@ namespace WebAPI_AE3.Models
         }
         public Apuesta() { }
     }
-    public class ApuestaDTO
+    public class ApuestasDTO
     {
-        public double tipoMercado { get; set; }
+        private int eventoId;
+
+        public string tipo { get; set; }
         public double cuota { get; set; }
         public double dinero { get; set; }
         public string fecha { get; set; }
-        public string gmail { get; set; }
-        public string tipoCuota { get; set; }
+        public int MercadoId { get; set; }
+        public Mercado Mercado { get; set; }
+        public string UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
+        public int EventoId { get; set; }
+        public Evento Evento { get; set; }
 
-        public ApuestaDTO(double tipoMercado, double cuota, double dinero, string fecha, string gmail, string tipoCuota)
+        public ApuestasDTO(string usuarioId, string tipo, double cuota, double dinero, int eventoId, Mercado mercado)
         {
-            this.tipoMercado = tipoMercado;
+            UsuarioId = usuarioId;
+            this.tipo = tipo;
             this.cuota = cuota;
             this.dinero = dinero;
-            this.fecha = fecha;
-            this.gmail = gmail;
-            this.tipoCuota = tipoCuota;
+            this.EventoId = eventoId;
+            Mercado = mercado;
         }
     }
 }

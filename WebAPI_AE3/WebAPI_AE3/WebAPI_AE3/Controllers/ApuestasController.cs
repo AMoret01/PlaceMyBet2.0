@@ -21,10 +21,10 @@ namespace WebAPI_AE3.Controllers
             return lista;
         }
         
-        public IEnumerable<ApuestaDTO> GetDTO()
+        public IEnumerable<ApuestasDTO> GetDTO()
         {
             var repository = new ApuestasRepository();
-            List<ApuestaDTO> apuestas = repository.retrieveDTO();
+            List<ApuestasDTO> apuestas = repository.retrieveDTO();
             return apuestas;
         }
 

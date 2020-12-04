@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,11 +51,11 @@ namespace WebAPI_AE3.Models
             List<Apuesta> Apuestas = new List<Apuesta>();
             using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
-                Apuestas = context.Apuestas.ToList();
+                Apuestas = context.Apuestas.Include(a => a.Mercado).ToList();
             }
             return Apuestas;
+
         }
-        //Tanto para over como para under lo que tengo en el chat
         internal void Save(Apuesta ap)
         {
                 Mercado mercado;
@@ -101,8 +102,20 @@ namespace WebAPI_AE3.Models
 
             return apuesta;
         }
+        static public ApuestasDTO ToDTO(Apuesta a)
+        {
+            PlaceMyBetContext context = new PlaceMyBetContext();
+            Mercado m;
+            using (context)
+            {
+                m = context.Mercados.Single(p => p.MercadoId == a.MercadoId);
 
-        internal List<ApuestaDTO> retrieveDTO()
+            }
+            return new ApuestasDTO(a.UsuarioId, a.tipo, a.cuota, a.dinero, m.EventoId, a.Mercado);
+         
+        }
+
+        internal List<ApuestasDTO> retrieveDTO()
         {
             /*
             MySqlConnection conectar = conexion();
@@ -129,8 +142,19 @@ namespace WebAPI_AE3.Models
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
             }*/
-            return null;
-        }
+            List<Apuesta> Apuestas = new List<Apuesta>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                Apuestas = context.Apuestas.Include(a => a.Mercado).ToList();
+            }
 
+            List<ApuestasDTO> apuestasDTO = new List<ApuestasDTO>();
+            for (int i = 0; i < apuestasDTO.Count; i++)
+            {
+                apuestasDTO.Add(ToDTO(Apuestas[i]));
+            }
+            return apuestasDTO;
+
+        }
     }
 }

@@ -44,13 +44,17 @@ namespace WebAPI_AE3.Controllers
         }
 
         // PUT: api/Evento/5
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, string local, string visitante)
         {
+            EventosRepository repo = new EventosRepository();
+            repo.Put(id, local, visitante);
         }
 
         // DELETE: api/Evento/5
         public void Delete(int id)
         {
+            EventosRepository repo = new EventosRepository();
+            repo.Delete(id);
         }
     }
 }

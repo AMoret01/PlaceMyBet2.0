@@ -12,15 +12,12 @@ namespace WebAPI_AE3.Models
         public DbSet<Apuesta> Apuestas { get; set; }
         public DbSet<Mercado> Mercados { get; set; }
         public DbSet<Evento> Eventos { get; set; }
-
         public PlaceMyBetContext()
         {
         }
-
         public PlaceMyBetContext(DbContextOptions options)
         {
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -28,7 +25,6 @@ namespace WebAPI_AE3.Models
                 optionsBuilder.UseMySql("Server=localhost;Port=3306;Database=placemybet2;Uid=root;password=");
             }
         }
-
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<Usuario>().HasData(new Usuario("Carla@gmail.com", "Carla", "Arbiol", 30));

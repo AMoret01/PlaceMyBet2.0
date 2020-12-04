@@ -27,13 +27,11 @@ namespace WebAPI_AE3.Models
     {
         public string local { get; set; }
         public string visitante { get; set; }
-        public string fecha { get; set; }
 
-        public EventoDTO(string local, string visitante, string fecha)
+        public EventoDTO(string local, string visitante)
         {
             this.local = local;
             this.visitante = visitante;
-            this.fecha = fecha;
         }
     }
 }
