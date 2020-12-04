@@ -10,7 +10,7 @@ using WebAPI_AE3.Models;
 namespace WebAPI_AE3.Controllers
 {
     [Route("api/Evento/{action}")]
-    public class EventoController : ApiController
+    public class EventosController : ApiController
     {
         // GET: api/Evento
         [HttpGet]

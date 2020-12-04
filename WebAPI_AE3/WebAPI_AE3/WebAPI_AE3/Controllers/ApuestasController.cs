@@ -10,7 +10,7 @@ using WebAPI_AE3.Models;
 namespace WebAPI_AE3.Controllers
 {
     
-    public class ApuestaController : ApiController
+    public class ApuestasController : ApiController
     {
         // GET: api/Apuesta
         
@@ -29,9 +29,11 @@ namespace WebAPI_AE3.Controllers
         }
 
         // GET: api/Apuesta/5
-        public string Get(int id)
+        public Apuesta Get(int id)
         {
-            return "value";
+            var rep = new ApuestasRepository();
+            Apuesta ap = rep.Retrieve(id);
+            return ap;
         }
 
         // POST: api/Apuesta

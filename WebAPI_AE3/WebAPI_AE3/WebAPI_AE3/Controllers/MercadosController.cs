@@ -10,7 +10,7 @@ using WebAPI_AE3.Models;
 namespace WebAPI_AE3.Controllers
 {
     
-    public class MercadoController : ApiController
+    public class MercadosController : ApiController
     {
         // GET: api/Mercado
         
