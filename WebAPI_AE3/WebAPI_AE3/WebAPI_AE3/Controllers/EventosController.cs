@@ -37,8 +37,10 @@ namespace WebAPI_AE3.Controllers
         }
 
         // POST: api/Evento
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Evento eventos)
         {
+            var repo = new EventosRepository();
+            repo.Save(eventos);
         }
 
         // PUT: api/Evento/5
