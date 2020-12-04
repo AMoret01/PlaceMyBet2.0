@@ -46,7 +46,12 @@ namespace WebAPI_AE3.Models
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
             }*/
-            return null;
+            List<Mercado> Mercados = new List<Mercado>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                Mercados = context.Mercados.ToList();
+            }
+            return Mercados;
         }
 
         internal List<MercadoDTO> retrieveDTO()
@@ -84,6 +89,19 @@ namespace WebAPI_AE3.Models
 
             context.Mercados.Add(m);
             context.SaveChanges();
+        }
+        internal Mercado Retrieve(int id)
+        {
+            Mercado mercado;
+
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                mercado = context.Mercados
+                    .Where(m => m.MercadoId == id)
+                    .FirstOrDefault();
+            }
+
+            return mercado;
         }
     }
 }

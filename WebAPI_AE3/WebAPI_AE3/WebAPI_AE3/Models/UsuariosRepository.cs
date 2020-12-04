@@ -47,7 +47,12 @@ namespace WebAPI_AE3.Models
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
             }*/
-            return null;
+            List<Usuario> Usuarios = new List<Usuario>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                Usuarios = context.Usuarios.ToList();
+            }
+            return Usuarios;
         }
     }
 }

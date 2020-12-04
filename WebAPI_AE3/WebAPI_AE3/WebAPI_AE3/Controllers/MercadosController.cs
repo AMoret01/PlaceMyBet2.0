@@ -36,8 +36,11 @@ namespace WebAPI_AE3.Controllers
         }
 
         // POST: api/Mercado
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Mercado mercados)
         {
+            var repo = new MercadosRepository();
+            repo.Save(mercados);
+            
         }
 
         // PUT: api/Mercado/5

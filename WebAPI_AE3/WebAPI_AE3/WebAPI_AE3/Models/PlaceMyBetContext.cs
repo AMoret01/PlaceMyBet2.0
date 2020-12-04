@@ -37,8 +37,8 @@ namespace WebAPI_AE3.Models
             modelbuilder.Entity<Evento>().HasData(new Evento(2, "Valencia", "PSG", "2020-04-19"));
             modelbuilder.Entity<Mercado>().HasData(new Mercado(1, 1.5, 7.10, 250, 100, 2.5, 1));
             modelbuilder.Entity<Mercado>().HasData(new Mercado(2, 2.3, 1.6, 150, 50, 1.5, 1));
-            modelbuilder.Entity<Apuesta>().HasData(new Apuesta(1, 2.1, 1.75, 125, "2020-03-13", 1, "Carla@gmail.com", "over"));
-            modelbuilder.Entity<Apuesta>().HasData(new Apuesta(2, 3.3, 1.1, 100, "2020-04-14", 2, "Irene@gmail.com", "under"));
+            modelbuilder.Entity<Apuesta>().HasData(new Apuesta(1, "over", 1.75, 125, "2020-03-13", 1, "Carla@gmail.com"));
+            modelbuilder.Entity<Apuesta>().HasData(new Apuesta(2, "under", 1.1, 100, "2020-04-14", 2, "Irene@gmail.com"));
 
         }
 

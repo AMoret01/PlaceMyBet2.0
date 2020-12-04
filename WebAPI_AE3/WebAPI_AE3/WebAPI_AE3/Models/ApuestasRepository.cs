@@ -47,7 +47,51 @@ namespace WebAPI_AE3.Models
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
             }*/
-            return null;
+            List<Apuesta> Apuestas = new List<Apuesta>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                Apuestas = context.Apuestas.ToList();
+            }
+            return Apuestas;
+        }
+        //Tanto para over como para under lo que tengo en el chat
+        internal void Save(Apuesta ap)
+        {
+                Mercado mercado;
+
+                using (PlaceMyBetContext context = new PlaceMyBetContext())
+                {
+                    mercado = context.Mercados
+                    .Where(m => m.MercadoId == ap.MercadoId)
+                    .FirstOrDefault();
+
+                    if (ap.tipo == "over")
+                    {
+                        mercado.DineroOver += ap.dinero;
+                        ap.cuota = mercado.CuotaOver;
+                    }
+                    else
+                    {
+                        mercado.DineroUnder += ap.dinero;
+                        ap.cuota = mercado.CuotaUnder;
+                    }
+
+                    double prob_over = mercado.DineroOver / (mercado.DineroOver + mercado.DineroUnder);
+                    double prob_under = mercado.DineroUnder / (mercado.DineroOver + mercado.DineroUnder);
+
+                    mercado.CuotaOver = (1 / prob_over)*0.95;
+                    mercado.CuotaUnder = (1 / prob_under)*0.95;
+
+                    context.Mercados.Update(mercado);
+                    context.Apuestas.Add(ap);
+                    context.SaveChanges();
+
+                }
+
+           
+
+            
+
         }
 
         internal List<ApuestaDTO> retrieveDTO()
@@ -78,15 +122,6 @@ namespace WebAPI_AE3.Models
                 return null;
             }*/
             return null;
-        }
-
-        internal void Save(Apuesta ap)
-        {
-            PlaceMyBetContext context = new PlaceMyBetContext();
-
-            context.Apuestas.Add(ap);
-            context.SaveChanges();   
-
         }
 
     }
