@@ -16,11 +16,9 @@ namespace WebAPI_AE3.Models
         public PlaceMyBetContext()
         {
         }
-
         public PlaceMyBetContext(DbContextOptions options)
         {
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -41,6 +39,5 @@ namespace WebAPI_AE3.Models
             modelbuilder.Entity<Apuesta>().HasData(new Apuesta(2, 3.3, 1.1, 100, "2020-04-14", 2, "Irene@gmail.com", "under"));
 
         }
-
     }
 }

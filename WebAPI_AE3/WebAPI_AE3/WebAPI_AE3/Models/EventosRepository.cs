@@ -46,7 +46,12 @@ namespace WebAPI_AE3.Models
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
             }*/
-            return null;
+            List<Evento> Eventos = new List<Evento>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                Eventos = context.Eventos.ToList();
+            }
+            return Eventos;
         }
 
         internal List<EventoDTO> retrieveDTO()
@@ -77,13 +82,6 @@ namespace WebAPI_AE3.Models
                 return null;
             }*/
             return null;
-        }
-        internal void Save(Evento e)
-        {
-            PlaceMyBetContext context = new PlaceMyBetContext();
-
-            context.Eventos.Add(e);
-            context.SaveChanges();
         }
     }
 }

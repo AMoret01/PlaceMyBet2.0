@@ -47,7 +47,12 @@ namespace WebAPI_AE3.Models
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
             }*/
-            return null;
+            List<Apuesta> Apuestas = new List<Apuesta>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                Apuestas = context.Apuestas.ToList();
+            }
+            return Apuestas;
         }
 
         internal List<ApuestaDTO> retrieveDTO()
@@ -158,7 +163,10 @@ namespace WebAPI_AE3.Models
             {
                 Debug.WriteLine("Se ha producido un error de conexion");
             }*/
-            
+            PlaceMyBetContext context = new PlaceMyBetContext();
+
+            context.Apuestas.Add(ap);
+            context.SaveChanges();
         }
 
     }
