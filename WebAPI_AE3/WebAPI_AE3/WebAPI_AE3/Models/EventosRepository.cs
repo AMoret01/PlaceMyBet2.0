@@ -83,5 +83,12 @@ namespace WebAPI_AE3.Models
             }*/
             return null;
         }
+        internal void Save(Evento e)
+        {
+            PlaceMyBetContext context = new PlaceMyBetContext();
+
+            context.Eventos.Add(e);
+            context.SaveChanges();
+        }
     }
 }
