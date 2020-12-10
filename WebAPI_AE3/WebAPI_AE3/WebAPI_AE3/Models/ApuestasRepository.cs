@@ -54,6 +54,20 @@ namespace WebAPI_AE3.Models
             }
             return Apuestas;
         }
+        internal Apuesta Retrieve(int id)
+        {
+            Apuesta apuesta;
+
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                apuesta = context.Apuestas
+                    .Where(ap => ap.ApuestaId == id)
+                    .FirstOrDefault();
+            }
+
+            return apuesta;
+        }
+
 
         internal List<ApuestaDTO> retrieveDTO()
         {

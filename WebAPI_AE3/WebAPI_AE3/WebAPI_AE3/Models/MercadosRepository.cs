@@ -53,6 +53,19 @@ namespace WebAPI_AE3.Models
             }
             return Mercados;
         }
+        internal Mercado Retrieve(int id)
+        {
+            Mercado mercado;
+
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                mercado = context.Mercados
+                    .Where(m => m.MercadoId == id)
+                    .FirstOrDefault();
+            }
+
+            return mercado;
+        }
 
         internal List<MercadoDTO> retrieveDTO()
         {

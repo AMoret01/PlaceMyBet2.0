@@ -14,12 +14,12 @@ namespace WebAPI_AE3.Controllers
     {
         // GET: api/Mercado
         
-        public IEnumerable<Mercado> Get()
+        /*public IEnumerable<Mercado> Get()
         {
             MercadosRepository repository = new MercadosRepository();
             List<Mercado> mercados = repository.retrieve();
             return mercados;
-        }
+        }*/
 
         
         public IEnumerable<MercadoDTO> GetDTO()
@@ -30,9 +30,11 @@ namespace WebAPI_AE3.Controllers
         }
 
         // GET: api/Mercado/5
-        public string Get(int id)
+        public Mercado Get(int id)
         {
-            return "value";
+            var repository = new MercadosRepository();
+            Mercado mercados = repository.Retrieve(id);
+            return mercados;
         }
 
         // POST: api/Mercado
