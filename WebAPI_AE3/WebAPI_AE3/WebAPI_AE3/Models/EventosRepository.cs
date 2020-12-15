@@ -60,6 +60,15 @@ namespace WebAPI_AE3.Models
             context.Eventos.Add(e);
             context.SaveChanges();
         }
+        internal Evento retrieveId(int id)
+        {
+            using (var context = new PlaceMyBetContext())
+            {
+                var evento = context.Eventos
+                    .FirstOrDefault(b => b.EventoId == id);
+                return evento;
+            }
+        }
 
         internal List<EventoDTO> retrieveDTO()
         {
@@ -88,25 +97,18 @@ namespace WebAPI_AE3.Models
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
             }*/
-            List<EventoDTO> Eventos = new List<EventoDTO>();
-            using (PlaceMyBetContext context = new PlaceMyBetContext())
-            {
-                Eventos = context.Eventos.Select(p => ToDTO(p)).ToList();
-            }
-            return Eventos;
+            return null;
         }
-        internal void Put(int id, string local, string visitante)
+        internal void Put(int id, string Local, string Visitante)
         {
+            Evento evento;
             PlaceMyBetContext context = new PlaceMyBetContext();
-            Evento e;
-            using (context)
-            {
-                e = context.Eventos.Single(p => p.EventoId == id);
-                e.Local = local;
-                e.Visitante = visitante;
-                context.SaveChanges();
-            }
+            evento = context.Eventos.FirstOrDefault(e => e.EventoId == id);
 
+            evento.Local = Local;
+            evento.Visitante = Visitante;
+
+            context.SaveChanges();
         }
         internal void Delete(int id)
         {

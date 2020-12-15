@@ -51,11 +51,10 @@ namespace WebAPI_AE3.Models
             using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
                 Mercados = context.Mercados.ToList();
-                Mercados = context.Mercados.Include(p => p.Evento).ToList();
             }
             return Mercados;
         }
-        public MercadoDTO ToDTO(Mercado m)
+        public static MercadoDTO ToDTO(Mercado m)
         {
             return new MercadoDTO(m.TipoMercado, m.CuotaOver,m.CuotaUnder);
         }
@@ -87,12 +86,10 @@ namespace WebAPI_AE3.Models
                 Debug.WriteLine("Error al conectar a la base de datos. ");
                 return null;
             }*/
-            List<MercadoDTO> Mercados = new List<MercadoDTO>();
-            using (PlaceMyBetContext context = new PlaceMyBetContext())
-            {
-                Mercados = context.Mercados.Select(m => ToDTO(m)).ToList();
+            PlaceMyBetContext context = new PlaceMyBetContext();
 
-            }
+            List<MercadoDTO> Mercados = context.Mercados.Select(p => ToDTO(p)).ToList();
+
             return Mercados;
         }
         internal void Save(Mercado m)
@@ -102,23 +99,15 @@ namespace WebAPI_AE3.Models
             context.Mercados.Add(m);
             context.SaveChanges();
         }
-        internal Mercado Retrieve(int id)
+        internal Mercado retrieveId(int id)
         {
-            Mercado mercado;
-
-            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            using (var context = new PlaceMyBetContext())
             {
-                mercado = context.Mercados
-                    .Where(m => m.MercadoId == id)
-                    .FirstOrDefault();
+                var mercado = context.Mercados
+                    .FirstOrDefault(b => b.MercadoId == id);
+                return mercado;
             }
-
-            return mercado;
         }
-        static public MercadoDTO ToDTO2(Mercado m)
-        {
-            return new MercadoDTO(m.TipoMercado, m.CuotaOver, m.CuotaUnder);
 
-        }
     }
 }

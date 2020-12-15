@@ -14,14 +14,14 @@ namespace WebAPI_AE3.Controllers
     {
         // GET: api/Apuesta
         
-        public IEnumerable<Apuesta> Get()
+        /*public IEnumerable<Apuesta> Get()
         {
             ApuestasRepository rep = new ApuestasRepository();
             List<Apuesta> lista = rep.retrieve();
             return lista;
-        }
+        }*/
         
-        public IEnumerable<ApuestasDTO> GetDTO()
+        public IEnumerable<ApuestasDTO> Get()
         {
             var repository = new ApuestasRepository();
             List<ApuestasDTO> apuestas = repository.retrieveDTO();
@@ -29,10 +29,10 @@ namespace WebAPI_AE3.Controllers
         }
 
         // GET: api/Apuesta/5
-        public Apuesta Get(int id)
+       public Apuesta Get(int id)
         {
             var rep = new ApuestasRepository();
-            Apuesta ap = rep.Retrieve(id);
+            Apuesta ap = rep.retrieveId(id);
             return ap;
         }
 

@@ -9,26 +9,18 @@ using WebAPI_AE3.Models;
 
 namespace WebAPI_AE3.Controllers
 {
-    [Route("api/Evento/{action}")]
+    
     public class EventosController : ApiController
     {
         // GET: api/Evento
-        [HttpGet]
-        [ActionName("Get")]
+        
         public IEnumerable<Evento> Get()
         {
             EventosRepository repository = new EventosRepository();
             List<Evento> eventos = repository.retrieve();
             return eventos;
         }
-        [HttpGet]
-        [ActionName("GetDTO")]
-        public IEnumerable<EventoDTO> GetDTO()
-        {
-            var repository = new EventosRepository();
-            List<EventoDTO> eventos = repository.retrieveDTO();
-            return eventos;
-        }
+        
 
         // GET: api/Evento/5
         public string Get(int id)
@@ -43,6 +35,7 @@ namespace WebAPI_AE3.Controllers
             repo.Save(eventos);
         }
 
+        //Poner frombody... en vez de tres datos
         // PUT: api/Evento/5
         public void Put(int id, string local, string visitante)
         {

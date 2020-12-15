@@ -61,18 +61,38 @@ namespace WebAPI_AE3.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cuenta",
+                columns: table => new
+                {
+                    CuentaId = table.Column<string>(nullable: false),
+                    saldo = table.Column<double>(nullable: false),
+                    nombreBanco = table.Column<string>(nullable: true),
+                    UsuarioId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cuenta", x => x.CuentaId);
+                    table.ForeignKey(
+                        name: "FK_Cuenta_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "UsuarioId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Apuestas",
                 columns: table => new
                 {
                     ApuestaId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    tipoMercado = table.Column<double>(nullable: false),
+                    tipo = table.Column<string>(nullable: true),
                     cuota = table.Column<double>(nullable: false),
                     dinero = table.Column<double>(nullable: false),
                     fecha = table.Column<string>(nullable: true),
-                    tipoCuota = table.Column<string>(nullable: true),
                     MercadoId = table.Column<int>(nullable: false),
-                    UsuarioId = table.Column<string>(nullable: true)
+                    UsuarioId = table.Column<string>(nullable: true),
+                    EventoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,6 +111,49 @@ namespace WebAPI_AE3.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Eventos",
+                columns: new[] { "EventoId", "Fecha", "Local", "Visitante" },
+                values: new object[,]
+                {
+                    { 1, "2020-07-20", "Madrid", "Betis" },
+                    { 2, "2020-04-19", "Valencia", "PSG" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Apellido", "Edad", "Nombre" },
+                values: new object[,]
+                {
+                    { "Carla@gmail.com", "Arbiol", 30, "Carla" },
+                    { "Irene@gmail.com", "Gomez", 12, "Irene" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cuenta",
+                columns: new[] { "CuentaId", "UsuarioId", "nombreBanco", "saldo" },
+                values: new object[] { "012345678", "Irene@gmail.com", "Caixa", 130.24000000000001 });
+
+            migrationBuilder.InsertData(
+                table: "Mercados",
+                columns: new[] { "MercadoId", "CuotaOver", "CuotaUnder", "DineroOver", "DineroUnder", "EventoId", "TipoMercado" },
+                values: new object[] { 2, 2.2999999999999998, 1.6000000000000001, 150.0, 50.0, 1, 1.5 });
+
+            migrationBuilder.InsertData(
+                table: "Mercados",
+                columns: new[] { "MercadoId", "CuotaOver", "CuotaUnder", "DineroOver", "DineroUnder", "EventoId", "TipoMercado" },
+                values: new object[] { 1, 1.5, 7.0999999999999996, 250.0, 100.0, 1, 2.5 });
+
+            migrationBuilder.InsertData(
+                table: "Apuestas",
+                columns: new[] { "ApuestaId", "EventoId", "MercadoId", "UsuarioId", "cuota", "dinero", "fecha", "tipo" },
+                values: new object[] { 1, 1, 1, "Carla@gmail.com", 1.75, 125.0, "2020-03-13", "over" });
+
+            migrationBuilder.InsertData(
+                table: "Apuestas",
+                columns: new[] { "ApuestaId", "EventoId", "MercadoId", "UsuarioId", "cuota", "dinero", "fecha", "tipo" },
+                values: new object[] { 2, 2, 2, "Irene@gmail.com", 1.1000000000000001, 100.0, "2020-04-14", "under" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Apuestas_MercadoId",
                 table: "Apuestas",
@@ -102,6 +165,12 @@ namespace WebAPI_AE3.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cuenta_UsuarioId",
+                table: "Cuenta",
+                column: "UsuarioId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Mercados_EventoId",
                 table: "Mercados",
                 column: "EventoId");
@@ -111,6 +180,9 @@ namespace WebAPI_AE3.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Apuestas");
+
+            migrationBuilder.DropTable(
+                name: "Cuenta");
 
             migrationBuilder.DropTable(
                 name: "Mercados");

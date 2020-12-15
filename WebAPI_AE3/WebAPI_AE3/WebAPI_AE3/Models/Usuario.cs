@@ -12,14 +12,15 @@ namespace WebAPI_AE3.Models
         public string Apellido { get; set; }
         public int Edad { get; set; }
 
+        public Cuenta Cuenta { get; set; }
         public List<Apuesta> Apuestas { get; set; }
 
-        public Usuario(string gmail, string nombre, string apellido, int edad)
+        public Usuario(string usuarioId, string nombre, string apellido, int edad)
         {
-            this.UsuarioId = gmail;
-            this.Nombre = nombre;
-            this.Apellido = apellido;
-            this.Edad = edad;
+            UsuarioId = usuarioId;
+            Nombre = nombre;
+            Apellido = apellido;
+            Edad = edad;
         }
         public Usuario() { }
     }

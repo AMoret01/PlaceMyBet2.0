@@ -324,6 +324,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApuestasController.cs" />
+    <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MercadosController.cs" />
@@ -332,22 +333,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20201112195408_m1.cs" />
-    <Compile Include="Migrations\20201112195408_m1.designer.cs">
-      <DependentUpon>20201112195408_m1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201112201017_m2.cs" />
-    <Compile Include="Migrations\20201112201017_m2.designer.cs">
-      <DependentUpon>20201112201017_m2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201204180812_m3.cs" />
-    <Compile Include="Migrations\20201204180812_m3.designer.cs">
-      <DependentUpon>20201204180812_m3.cs</DependentUpon>
+    <Compile Include="Migrations\20201215190143_m1.cs" />
+    <Compile Include="Migrations\20201215190143_m1.designer.cs">
+      <DependentUpon>20201215190143_m1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\PlaceMyBetContextModelSnapshot.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Apuesta.cs" />
+    <Compile Include="Models\Cuenta.cs" />
+    <Compile Include="Models\CuentaRepository.cs" />
     <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Mercado.cs" />

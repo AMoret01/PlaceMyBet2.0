@@ -22,6 +22,9 @@ namespace WebAPI_AE3.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("EventoId")
+                        .HasColumnType("int");
+
                     b.Property<int>("MercadoId")
                         .HasColumnType("int");
 
@@ -52,6 +55,7 @@ namespace WebAPI_AE3.Migrations
                         new
                         {
                             ApuestaId = 1,
+                            EventoId = 1,
                             MercadoId = 1,
                             UsuarioId = "Carla@gmail.com",
                             cuota = 1.75,
@@ -62,12 +66,44 @@ namespace WebAPI_AE3.Migrations
                         new
                         {
                             ApuestaId = 2,
+                            EventoId = 2,
                             MercadoId = 2,
                             UsuarioId = "Irene@gmail.com",
                             cuota = 1.1000000000000001,
                             dinero = 100.0,
                             fecha = "2020-04-14",
                             tipo = "under"
+                        });
+                });
+
+            modelBuilder.Entity("WebAPI_AE3.Models.Cuenta", b =>
+                {
+                    b.Property<string>("CuentaId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("UsuarioId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("nombreBanco")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<double>("saldo")
+                        .HasColumnType("double");
+
+                    b.HasKey("CuentaId");
+
+                    b.HasIndex("UsuarioId")
+                        .IsUnique();
+
+                    b.ToTable("Cuenta");
+
+                    b.HasData(
+                        new
+                        {
+                            CuentaId = "012345678",
+                            UsuarioId = "Irene@gmail.com",
+                            nombreBanco = "Caixa",
+                            saldo = 130.24000000000001
                         });
                 });
 
@@ -206,6 +242,13 @@ namespace WebAPI_AE3.Migrations
                     b.HasOne("WebAPI_AE3.Models.Usuario", "Usuario")
                         .WithMany("Apuestas")
                         .HasForeignKey("UsuarioId");
+                });
+
+            modelBuilder.Entity("WebAPI_AE3.Models.Cuenta", b =>
+                {
+                    b.HasOne("WebAPI_AE3.Models.Usuario", "Usuario")
+                        .WithOne("Cuenta")
+                        .HasForeignKey("WebAPI_AE3.Models.Cuenta", "UsuarioId");
                 });
 
             modelBuilder.Entity("WebAPI_AE3.Models.Mercado", b =>
