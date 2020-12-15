@@ -1,0 +1,115 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      AE7
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="Formulario">
+
+    <ion-item>
+      <ion-label>Nombre:</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descripción: </ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Categoría: </ion-label>
+      <ion-select [(ngModel)]="opcion" (ngModelChange)="Visible()">
+        <ion-select-option value="Motor">{{motor}}</ion-select-option>
+        <ion-select-option value="Inmobiliaria">{{inmobiliaria}}</ion-select-option>
+        <ion-select-option value="Tecnologia">{{tecnologia}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+      <ion-list id="motor" *ngIf="MotorOculto == false">
+        <ion-list-header>
+          <ion-label>
+            Categoría Motor
+          </ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-select multiple="false" cancelText="Cancelar" okText="Aceptar">
+            <ion-select-option value="coche">Coche</ion-select-option>
+            <ion-select-option value="moto">Moto</ion-select-option>
+          </ion-select>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Km del vehichulo: </ion-label>
+          <ion-input type='number' min="0" max="400.000" step="1"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Año de fabricación: </ion-label>
+          <ion-input type="number" min="1900" max="3000" step="1" placeholder="2021"></ion-input>
+        </ion-item>
+      </ion-list>
+  
+      <ion-list id="inmobiliaria" *ngIf="InmobiliariaOculto == false">
+        <ion-list-header>
+          <ion-label>
+            Categoria Inmobiliaria
+          </ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>Metros de la vivienda: </ion-label>
+          <ion-input type='number' [placeholder]=placeHolder></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Número de baños: </ion-label>
+          <ion-input type='number' [placeholder]=placeHolder></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Número de habitaciones: </ion-label>
+          <ion-input type='number' [placeholder]=placeHolder></ion-input>
+        </ion-item>
+    
+    
+        <ion-item>
+          <ion-label>Localidad: </ion-label>
+          <ion-input placeholder="Valencia"></ion-input>
+        </ion-item>
+      </ion-list>
+  
+      <ion-list id="Tecnologia" *ngIf="TecnologiaOculto == false">
+        <ion-list-header>
+          <ion-label>
+            Tecnología
+          </ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>Estado del producto: </ion-label>
+          <ion-select multiple="false" cancelText="Cancelar" okText="Aceptar">
+            <ion-select-option value="Perfecto estado">Perfecto estado</ion-select-option>
+            <ion-select-option value="Usado">Usado</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+  
+      <ion-item>
+        <ion-label>Precio: </ion-label>
+        <ion-input type='number'></ion-input>
+      </ion-item>
+
+      <ion-button color="dark" size="large">Agregar producto</ion-button>
+
+  </div>
+</ion-content>
