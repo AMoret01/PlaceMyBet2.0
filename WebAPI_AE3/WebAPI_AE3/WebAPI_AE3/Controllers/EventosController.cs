@@ -37,10 +37,10 @@ namespace WebAPI_AE3.Controllers
 
         //Poner frombody... en vez de tres datos
         // PUT: api/Evento/5
-        public void Put(int id, string local, string visitante)
+        public void Put(int id, string Local, string Visitante)
         {
             EventosRepository repo = new EventosRepository();
-            repo.Put(id, local, visitante);
+            repo.Put(id,Local, Visitante);
         }
 
         // DELETE: api/Evento/5

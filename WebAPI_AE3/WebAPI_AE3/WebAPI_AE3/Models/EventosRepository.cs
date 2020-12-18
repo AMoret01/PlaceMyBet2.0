@@ -126,6 +126,6 @@ namespace WebAPI_AE3.Models
             return new EventoDTO(e.Local, e.Visitante);
 
         }
-        
+
     }
 }

@@ -34,4 +34,15 @@ namespace WebAPI_AE3.Models
             this.visitante = visitante;
         }
     }
+    public class EventosExamen
+    {
+        public string local { get; set; }
+
+
+        public EventosExamen(string local)
+        {
+            this.local = local;
+             
+        }
+    }
 }
