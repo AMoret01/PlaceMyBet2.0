@@ -34,24 +34,20 @@ namespace WebAPI_AE3.Models
             this.visitante = visitante;
         }
     }
-    public class EventosExamen
+    //Ejercicio 1
+    public class Eventos2
     {
-        public int EventoId { get; set; }
-        public string Local { get; set; }
+        public double CuotaOver { get; set; }
         public string Visitante { get; set; }
-        public string Fecha { get; set; }
-        public Mercado Mercados { get; set; }
+        public double CuotaUnder { get; set; }
+        public int MercadoId { get; set; }
 
-        public EventosExamen(int idEvento, string local, string visitante, string fecha,Mercado Mercados)
+        public Eventos2(string rival, int idMercado, double cuotaOver, double cuotaUnder)
         {
-            { 
-                EventoId = idEvento;
-                Local = local;
-                Visitante = visitante;
-                Fecha = fecha;
-                this.Mercados = Mercados;
-            }
+            Visitante = rival;
+            MercadoId = idMercado;
+            CuotaOver = cuotaOver;
+            CuotaUnder = cuotaUnder;
         }
-
     }
 }

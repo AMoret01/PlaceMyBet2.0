@@ -127,7 +127,38 @@ namespace WebAPI_AE3.Models
             return new EventoDTO(e.Local, e.Visitante);
 
         }
-        
-        
+        static public Eventos2 ToDTOEx(Evento e, string equipo)
+        {
+            PlaceMyBetContext context = new PlaceMyBetContext();
+            Mercado m;
+            using (context)
+            {
+                m = context.Mercados.FirstOrDefault(b => b.EventoId == e.EventoId);
+            }
+            if (e.Local == equipo)
+            {
+                return new Eventos2(e.Visitante, m.MercadoId, m.CuotaOver, m.CuotaUnder);
+            }
+            else
+            {
+                return new Eventos2(e.Local, m.MercadoId, m.CuotaOver, m.CuotaUnder);
+            }
+        }
+        //Ejercicio 1
+        internal List<Eventos2> retrieveRival(string rival)
+        {
+            List<Evento> evento;
+            List<Eventos2> rivalfinal = new List<Eventos2>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                evento = context.Eventos.Where(a => a.Local == rival || a.Visitante == rival).ToList();
+            }
+            for (int i = 0; i < evento.Count; i++)
+            {
+                rivalfinal.Add(ToDTOEx(evento[i], rival));
+            }
+            return rivalfinal;
+        }
+
     }
 }
