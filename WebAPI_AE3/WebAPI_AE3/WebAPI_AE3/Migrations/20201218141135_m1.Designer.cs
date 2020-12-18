@@ -8,7 +8,7 @@ using WebAPI_AE3.Models;
 namespace WebAPI_AE3.Migrations
 {
     [DbContext(typeof(PlaceMyBetContext))]
-    [Migration("20201215190143_m1")]
+    [Migration("20201218141135_m1")]
     partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
