@@ -127,6 +127,7 @@ namespace WebAPI_AE3.Models
             return new EventoDTO(e.Local, e.Visitante);
 
         }
+        //Comienzo Ejercicio 1
         static public Eventos2 ToDTOEx(Evento e, string equipo)
         {
             PlaceMyBetContext context = new PlaceMyBetContext();
@@ -144,7 +145,7 @@ namespace WebAPI_AE3.Models
                 return new Eventos2(e.Local, m.MercadoId, m.CuotaOver, m.CuotaUnder);
             }
         }
-        //Ejercicio 1
+        
         internal List<Eventos2> retrieveRival(string rival)
         {
             List<Evento> evento;
@@ -159,6 +160,8 @@ namespace WebAPI_AE3.Models
             }
             return rivalfinal;
         }
+        // Final Ejercicio 1
+        //Ejercicio 2
 
     }
 }
