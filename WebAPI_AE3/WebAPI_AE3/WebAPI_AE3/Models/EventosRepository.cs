@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -126,6 +127,7 @@ namespace WebAPI_AE3.Models
             return new EventoDTO(e.Local, e.Visitante);
 
         }
-
+        
+        
     }
 }

@@ -21,7 +21,6 @@ namespace WebAPI_AE3.Controllers
             return eventos;
         }
         
-
         // GET: api/Evento/5
         public string Get(int id)
         {

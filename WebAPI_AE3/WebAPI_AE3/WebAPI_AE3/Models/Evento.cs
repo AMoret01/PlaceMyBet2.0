@@ -36,13 +36,22 @@ namespace WebAPI_AE3.Models
     }
     public class EventosExamen
     {
-        public string local { get; set; }
+        public int EventoId { get; set; }
+        public string Local { get; set; }
+        public string Visitante { get; set; }
+        public string Fecha { get; set; }
+        public Mercado Mercados { get; set; }
 
-
-        public EventosExamen(string local)
+        public EventosExamen(int idEvento, string local, string visitante, string fecha,Mercado Mercados)
         {
-            this.local = local;
-             
+            { 
+                EventoId = idEvento;
+                Local = local;
+                Visitante = visitante;
+                Fecha = fecha;
+                this.Mercados = Mercados;
+            }
         }
+
     }
 }
