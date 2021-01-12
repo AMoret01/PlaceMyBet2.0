@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IHogar } from "../interfaces";
+import { IHogar,IInmobiliaria,IMotor,ITecnologia } from '../interfaces';
 
 
 
@@ -7,21 +7,50 @@ import { IHogar } from "../interfaces";
 
 export class ProductoService{
 
-    productos: IHogar[]= [
+    productos: (IHogar | IInmobiliaria | IMotor | ITecnologia)[] = [
         {
           "id" : 1,
           "nombre" : "Chalet",
           "descripcion" : "Chalet de dos plantas con jardín y piscina.",
           "categoria" : "Hogar",
           "precio" : 50000
+        },
+        {
+          "id": 2,
+          "nombre": "IPad",
+          "descripcion": "Color blanco, marca apple y último modelo.",
+          "categoria": "Tecnología",
+          "estado": "Usado",
+          "precio": 100
+        },
+        {
+          "id": 3,
+          "nombre": "V8",
+          "descripcion": "Motor muy potente generalmente usado para coches deportivos.",
+          "categoria": "Motor",
+          "categoría motor": "Coche",
+          "Km del vehichulo": 55000,
+          "año de fabricación": 2001,
+          "precio": 1200
+        },
+        {
+          "id": 4,
+          "nombre": "Apartamento",
+          "descripcion": "Apartamento en primera línea de playa con unas excelentes vistas al mar.",
+          "categoria": "Inmobiliaria",
+          "metros de la vivienda": 1000,
+          "numero de baños": 2,
+          "numero de habitaciones": 7,
+          "localidad": "Valencia",
+          "precio": 125000
         }
       ]
 
-    getProductos(): IHogar[]{
+    getProductos(): (IHogar | IInmobiliaria | IMotor | ITecnologia)[]{
         return this.productos;
     }
 
-    getProducto(id : number) : IHogar{
+    getProducto(id : number) : (IHogar | IInmobiliaria | IMotor | ITecnologia){
         
       return this.productos.find(x => x.id == id);
     }

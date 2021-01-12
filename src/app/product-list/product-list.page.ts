@@ -28,25 +28,26 @@ export class ProductListPage{
   categoria: string;
   precio: number;
   estado: string;
-  metros_vivienda: number;
-  numero_baños: number;
-  numero_habitaciones: number;
+  metrosVivienda: number;
+  numeroBanyos: number;
+  numeroHabitaciones: number;
   localidad: string;
-  categoria_motor: string;
-  Km_vehichulo: number;
-  año_fabricación: number;
+  categoriaMotor: string;
+  KmVehichulo: number;
+  anyoFabricacion: number;
 
   hogares: (IHogar)[] = [];
   motores: (IMotor)[] = [];
   inmuebles: (IInmobiliaria)[] = [];
   tecnologias: (ITecnologia)[] = [];
+  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)[] = [];
   
   constructor(private _toastCtrl: ToastController, private _productoService : ProductoService) {
 
   }
 
   ngOnInit(){
-    this.hogares = this._productoService.getProductos();
+    this.producto = this._productoService.getProductos();
   }
 
   async presentToast() {
@@ -96,9 +97,9 @@ export class ProductListPage{
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
-          "metros de la vivienda": this.metros_vivienda,
-          "numero de baños": this.numero_baños,
-          "numero de habitaciones": this.numero_habitaciones,
+          "metros de la vivienda": this.metrosVivienda,
+          "numero de baños": this.numeroBanyos,
+          "numero de habitaciones": this.numeroHabitaciones,
           "localidad": this.localidad,
           "precio": this.precio
         };
@@ -110,9 +111,9 @@ export class ProductListPage{
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
-          "categoría motor": this.categoria_motor,
-          "Km del vehichulo": this.Km_vehichulo,
-          "año de fabricación": this.año_fabricación,
+          "categoría motor": this.categoriaMotor,
+          "Km del vehichulo": this.KmVehichulo,
+          "año de fabricación": this.anyoFabricacion,
           "precio": this.precio
         };
         this.motores.push(motor);

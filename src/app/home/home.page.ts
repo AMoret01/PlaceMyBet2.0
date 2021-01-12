@@ -12,6 +12,7 @@ export class HomePage {
   motor: string = "Motor";
   inmobiliaria: string = "Inmobiliaria";
   tecnologia: string = "Tecnologia";
+  hogar: string = "Hogar";
 
   placeHolder: string = "";
   opcion: string = "";
@@ -19,23 +20,35 @@ export class HomePage {
   MotorOculto: boolean = true
   TecnologiaOculto: boolean = true
   InmobiliariaOculto: boolean = true
+  HogarOculto: boolean = true
   id: number;
   nombre: string;
   descripcion: string;
   categoria: string;
   precio: number;
   estado: string;
+  metrosVivienda: number;
+  numeroBanyos: number;
+  numeroHabitaciones: number;
+  localidad: string;
+  categoriaMotor: string;
+  KmVehichulo: number;
+  anyoFabricacion: number;
+
+  hogares: (IHogar)[] = [];
+  motores: (IMotor)[] = [];
+  inmuebles: (IInmobiliaria)[] = [];
+  tecnologias: (ITecnologia)[] = [];
+  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)[] = [];
 
 
-
-  productos: (IHogar)[] = [];
-
+  
   constructor(private _toastCtrl: ToastController, private _productoService : ProductoService) {
 
   }
 
   ngOnInit(){
-    this.productos = this._productoService.getProductos();
+    this.producto = this._productoService.getProductos();
   }
 
   Visible(): void {
