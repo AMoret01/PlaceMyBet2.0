@@ -1,20 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      AE9
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-button expand="block" [routerLink]="['/product-insert']" routerDirection="forward">Insertar productos</ion-button>
+  <ion-button expand="block" [routerLink]="['/product-list']" routerDirection="forward">Listado de productos</ion-button>
+  
 </ion-content>
