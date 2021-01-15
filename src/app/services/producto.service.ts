@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { AngularFireDatabase } from "@angular/fire/database";
 import { IHogar,IInmobiliaria,IMotor,ITecnologia } from '../interfaces';
 
 
@@ -7,7 +8,7 @@ import { IHogar,IInmobiliaria,IMotor,ITecnologia } from '../interfaces';
 
 export class ProductoService{
 
-    productos: (IHogar | IInmobiliaria | IMotor | ITecnologia)[] = [
+    /*productos: (IHogar | IInmobiliaria | IMotor | ITecnologia)[] = [
         {
           "id" : 1,
           "nombre" : "Chalet",
@@ -28,9 +29,9 @@ export class ProductoService{
           "nombre": "V8",
           "descripcion": "Motor muy potente generalmente usado para coches deportivos.",
           "categoria": "Motor",
-          "categoría motor": "Coche",
+          "categoria motor": "Coche",
           "Km del vehichulo": 55000,
-          "año de fabricación": 2001,
+          "año de fabricacion": 2001,
           "precio": 1200
         },
         {
@@ -44,15 +45,24 @@ export class ProductoService{
           "localidad": "Valencia",
           "precio": 125000
         }
-      ]
+      ]*/
 
-    getProductos(): (IHogar | IInmobiliaria | IMotor | ITecnologia)[]{
-        return this.productos;
-    }
+      constructor(private _db: AngularFireDatabase){
 
-    getProducto(id : number) : (IHogar | IInmobiliaria | IMotor | ITecnologia){
+      }
+
+    /*getProductos(): (IHogar | IInmobiliaria | IMotor | ITecnologia)[]{
+      return this.productos;
+    }*/
+
+    /*getProducto(id : number) : (IHogar | IInmobiliaria | IMotor | ITecnologia){
         
       return this.productos.find(x => x.id == id);
+    }*/
+
+    setProducto(producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)){
+      let ref = this._db.database.ref("productos");
+      ref.push(producto);
     }
 
 }

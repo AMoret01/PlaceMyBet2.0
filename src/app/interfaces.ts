@@ -7,9 +7,9 @@ export interface IHogar{
 }
 
 export interface IMotor extends IHogar{
-    "categoría motor" : string,
+    "categoria motor" : string,
     "Km del vehichulo" : number,
-    "año de fabricación": number
+    "año de fabricacion": number
 }
 
 export interface IInmobiliaria extends IHogar{

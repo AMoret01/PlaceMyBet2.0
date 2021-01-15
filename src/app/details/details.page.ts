@@ -23,7 +23,7 @@ export class DetailsPage implements OnInit {
  categoriaMotor: string;
  KmVehichulo: number;
  anyoFabricacion: number;
- 
+
  product: (IHogar | IInmobiliaria | IMotor | ITecnologia);
 
   constructor(private _activatedRoute: ActivatedRoute, private _productoService : ProductoService) { }
