@@ -1,5 +1,7 @@
 {
   "name": "AE10",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
