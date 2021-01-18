@@ -36,11 +36,11 @@ export class ProductInsertPage {
   KmVehichulo: number;
   anyoFabricacion: number;
 
-  hogares: (IHogar)[] = [];
-  motores: (IMotor)[] = [];
-  inmuebles: (IInmobiliaria)[] = [];
-  tecnologias: (ITecnologia)[] = [];
-  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)[] = [];
+  hogares: (IHogar)[];
+  motores: (IMotor)[];
+  inmuebles: (IInmobiliaria)[];
+  tecnologias: (ITecnologia)[];
+  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)[];
 
 
   
@@ -115,9 +115,9 @@ export class ProductInsertPage {
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
-          "categoría motor": this.categoriaMotor,
+          "categoria motor": this.categoriaMotor,
           "Km del vehichulo": this.KmVehichulo,
-          "año de fabricación": this.anyoFabricacion,
+          "año de fabricacion": this.anyoFabricacion,
           "precio": this.precio
         };
         this.motores.push(motor);

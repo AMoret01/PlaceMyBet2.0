@@ -45,7 +45,7 @@ export class ProductoService{
           "localidad": "Valencia",
           "precio": 125000
         }
-      ]
+      ];
 
     getProductos(): (IHogar | IInmobiliaria | IMotor | ITecnologia)[]{
       return this.productos;

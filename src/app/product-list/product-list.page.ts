@@ -36,11 +36,11 @@ export class ProductListPage{
   KmVehichulo: number;
   anyoFabricacion: number;
 
-  hogares: (IHogar)[] = [];
-  motores: (IMotor)[] = [];
-  inmuebles: (IInmobiliaria)[] = [];
-  tecnologias: (ITecnologia)[] = [];
-  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)[] = [];
+  hogares: (IHogar)[];
+  motores: (IMotor)[];
+  inmuebles: (IInmobiliaria)[];
+  tecnologias: (ITecnologia)[];
+  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)[];
   
   constructor(private _toastCtrl: ToastController, private _productoService : ProductoService) {
 
