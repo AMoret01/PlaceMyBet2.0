@@ -47,7 +47,7 @@ export class ProductListPage{
   }
 
   ngOnInit(){
-    this.producto = this._productoService.getProductos();
+    //this.producto = this._productoService.getProductos();
   }
 
   async presentToast() {

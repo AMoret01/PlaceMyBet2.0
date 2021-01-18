@@ -49,7 +49,7 @@ export class ProductInsertPage {
   }
 
   ngOnInit(){
-    this.producto = this._productoService.getProductos();
+    //this.producto = this._productoService.getProductos();
   }
 
 
@@ -93,7 +93,7 @@ export class ProductInsertPage {
           "estado": this.estado,
           "precio": this.precio
         };
-        this.tecnologias.push(tecnologia);
+        this._productoService.setProducto(tecnologia);
 
       } else if (this.categoria == this.inmobiliaria) {
         let inmobiliaria: IInmobiliaria = {
@@ -107,7 +107,7 @@ export class ProductInsertPage {
           "localidad": this.localidad,
           "precio": this.precio
         };
-        this.inmuebles.push(inmobiliaria);
+        this._productoService.setProducto(inmobiliaria);
 
       } else if (this.categoria == this.motor) {
         let motor: IMotor = {
@@ -120,7 +120,7 @@ export class ProductInsertPage {
           "año de fabricacion": this.anyoFabricacion,
           "precio": this.precio
         };
-        this.motores.push(motor);
+        this._productoService.setProducto(motor);
 
       } else if (this.categoria == this.hogar) {
         let hogar: IHogar = {
@@ -130,7 +130,7 @@ export class ProductInsertPage {
           "categoria": this.categoria,
           "precio": this.precio
         };
-        this.hogares.push(hogar);
+        this._productoService.setProducto(hogar);
       }
 
     };

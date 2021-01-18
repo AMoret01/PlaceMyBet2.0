@@ -48,7 +48,7 @@ export class HomePage {
   }
 
   ngOnInit(){
-    this.producto = this._productoService.getProductos();
+    //this.producto = this._productoService.getProductos();
   }
 
   Visible(): void {

@@ -33,7 +33,7 @@ export class DetailsPage implements OnInit {
     this.id = +this._activatedRoute.snapshot.paramMap.get('id');
     console.log("He recibido un "+this.id);
 
-    this.product = this._productoService.getProducto(this.id);
+    //this.product = this._productoService.getProducto(this.id);
 
   }
 }
