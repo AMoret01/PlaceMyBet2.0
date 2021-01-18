@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IHogar, IInmobiliaria, IMotor, ITecnologia } from '../interfaces';
 import { ProductoService } from '../services/producto.service';
 
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
@@ -11,33 +12,48 @@ import { ProductoService } from '../services/producto.service';
 export class DetailsPage implements OnInit {
 
   id: number;
-  nombre: string;
-  descripcion: string;
   categoria: string;
-  precio: number;
-  estado: string;
-  metrosVivienda: number;
-  numeroBanyos: number;
-  numeroHabitaciones: number;
-  localidad: string;
-  categoriaMotor: string;
-  KmVehichulo: number;
-  anyoFabricacion: number;
 
-  hogares: (IHogar)[];
-  motores: (IMotor)[];
-  inmuebles: (IInmobiliaria)[];
-  tecnologias: (ITecnologia)[];
-  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia);
+  IHogar : IHogar;
+  ITecnologia : ITecnologia;
+  IInmobiliaria : IInmobiliaria;
+  IMotor : IMotor;
 
-  constructor(private _activatedRoute: ActivatedRoute, private _productoService: ProductoService) { }
+  MotorOculto: boolean = true
+  TecnologiaOculto: boolean = true
+  InmobiliariaOculto: boolean = true
+  HogarOculto: boolean = true
+
+  constructor(private _ActivateRoute: ActivatedRoute, private _ProService: ProductoService) { }
 
   ngOnInit() {
+    this.id = +this._ActivateRoute.snapshot.paramMap.get('id');
+    this.categoria = this._ActivateRoute.snapshot.paramMap.get('categoria');
+    let producto;
 
-    this.id = +this._activatedRoute.snapshot.paramMap.get('id');
-    console.log("He recibido un " + this.id);
+    if (this.categoria == "Tecnología") {
+      producto = this._ProService.getTecnologiasId(this.id);
+      this.ITecnologia = producto;
+      this.TecnologiaOculto = false;
+      console.log(producto,this.ITecnologia);
 
-    //this.producto = this._productoService.getProducto(this.id);
+    } else if (this.categoria == "Hogar") {
+      producto = this._ProService.getHogaresId(this.id);
+      this.IHogar = producto;
+      this.HogarOculto = false;
+      console.log(producto,this.IHogar);
 
+    } else if (this.categoria == "Inmobiliaria") {
+      producto = this._ProService.getInmueblesId(this.id);
+      this.IInmobiliaria = producto;
+      this.InmobiliariaOculto = false;
+      console.log(producto,this.IInmobiliaria);
+
+    } else if (this.categoria == "Motor") {
+      producto = this._ProService.getInmueblesId(this.id);
+      this.IMotor = producto;
+      this.MotorOculto = false;
+      console.log(producto,this.IMotor);
+    }
   }
 }

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let item of producto">
+  <ion-card *ngFor="let item of hogares">
     <ion-card-header>
     <ion-card-title>Producto {{item.nombre}} ({{item.precio}} €) </ion-card-title>
     </ion-card-header>
@@ -18,7 +18,55 @@
       <ion-label>Descripción: {{item.descripcion}}</ion-label>
     </ion-card-content>
 
-    <ion-button expand="block" [routerLink]="['/details/',item.id]" routerDirection="forward">Detalles</ion-button>
+    <ion-button expand="block" [routerLink]="['/details/',item.id,item.categoria]" routerDirection="forward">Detalles</ion-button>
+
+  </ion-card>
+  <ion-card *ngFor="let item of tecnologias">
+    <ion-card-header>
+    <ion-card-title>Producto {{item.nombre}} ({{item.precio}} €) </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label>Categoría: {{item.categoria}}</ion-label>     
+    </ion-card-content>
+
+    <ion-card-content>    
+      <ion-label>Descripción: {{item.descripcion}}</ion-label>
+    </ion-card-content>
+
+    <ion-button expand="block" [routerLink]="['/details/',item.id,item.categoria]" routerDirection="forward">Detalles</ion-button>
+
+  </ion-card>
+  <ion-card *ngFor="let item of motores">
+    <ion-card-header>
+    <ion-card-title>Producto {{item.nombre}} ({{item.precio}} €) </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label>Categoría: {{item.categoria}}</ion-label>     
+    </ion-card-content>
+
+    <ion-card-content>    
+      <ion-label>Descripción: {{item.descripcion}}</ion-label>
+    </ion-card-content>
+
+    <ion-button expand="block" [routerLink]="['/details/',item.id,item.categoria]" routerDirection="forward">Detalles</ion-button>
+
+  </ion-card>
+  <ion-card *ngFor="let item of inmuebles">
+    <ion-card-header>
+    <ion-card-title>Producto {{item.nombre}} ({{item.precio}} €) </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label>Categoría: {{item.categoria}}</ion-label>     
+    </ion-card-content>
+
+    <ion-card-content>    
+      <ion-label>Descripción: {{item.descripcion}}</ion-label>
+    </ion-card-content>
+
+    <ion-button expand="block" [routerLink]="['/details/',item.id,item.categoria]" routerDirection="forward">Detalles</ion-button>
 
   </ion-card>
 </ion-content>

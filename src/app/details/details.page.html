@@ -5,45 +5,105 @@
 </ion-header>
 
 <ion-content>
-    <ion-card-header>
-    <ion-card-title>Producto {{producto.nombre}} ({{producto.precio}} €) </ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      <ion-label>Categoría: {{producto.categoria}}</ion-label>     
-    </ion-card-content>
+  <div class="Motor">
+    <ion-card *ngIf="MotorOculto == false">
+      <ion-card-header>
+        <ion-card-title>{{IMotor.nombre}}</ion-card-title>
+        <ion-card-subtitle>{{IMotor.categoria}}</ion-card-subtitle>
+      </ion-card-header>
     
-    <ion-card-content *ngIf="producto.categoria == 'Tecnología'">
-      <ion-label>Estado: {{producto.estado}}</ion-label>     
-    </ion-card-content>
+      <ion-card-content>
+        <ion-label>
+          Precio --> {{IMotor.precio}}€
+        </ion-label>
+        <br>
+        <ion-label>
+          Informacion del producto: 
+        </ion-label>
+        <br>
+        <ion-label>
+          Categoria del motor: {{IMotor.categoriaMotor}}
+          <br>
+          KMs del veichulo: {{IMotor.KmVehichulo}}
+          <br>
+          Año de fabricacion: {{IMotor.anyoFabricacion}}
+        </ion-label>
+        <br>
+        Descripcion del producto: {{IMotor.descripcion}}
+      </ion-card-content>
+    </ion-card>
+  </div>
 
+  <div class="Tecnología">
+  <ion-card *ngIf="TecnologiaOculto == false">
+    <ion-card-header>
+      <ion-card-title>{{ITecnologia.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{ITecnologia.categoria}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-label>
+        Precio --> {{ITecnologia.precio}}€
+      </ion-label>
+      <br>
+      <ion-label>
+        Estado del producto --> {{ITecnologia.estado}}
+      </ion-label>
+      <br>
+      Descripcion del producto: {{ITecnologia.descripcion}}
+    </ion-card-content>
+  </ion-card>
+</div>
 
-    <ion-card-content *ngIf="producto.categoria == 'Motor'">
-      <ion-label>Categoria del motor: {{producto.categoriaMotor}}</ion-label>     
+  <div class ="Hogar">
+  <ion-card *ngIf="HogarOculto == false">
+    <ion-card-header>
+      <ion-card-title>{{IHogar.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{IHogar.categoria}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-label>
+        Precio --> {{IHogar.precio}}€
+      </ion-label>
+      <br>
+      Descripcion del producto: {{IHogar.descripcion}}
     </ion-card-content>
-    <ion-card-content *ngIf="producto.categoria == 'Motor'">
-      <ion-label>Km del vehichulo: {{producto.KmVehichulo}} Km</ion-label>     
-    </ion-card-content>
-    <ion-card-content *ngIf="producto.categoria == 'Motor'">
-      <ion-label>Año de fabricacion: {{producto.anyoFabricacion}}</ion-label>     
-    </ion-card-content>
+  </ion-card>
+</div>
 
+<div class="Inmobiliaria">
+  <ion-card *ngIf="InmobiliariaOculto == false">
+    <ion-card-header>
+      <ion-card-title>{{IInmobiliaria.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{IInmobiliaria.categoria}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-label>
+        Precio --> {{IInmobiliaria.precio}}€
+      </ion-label>
+      <br>
+      <ion-label>
+        Informacion del producto: 
+      </ion-label>
+      <br>
+      <ion-label>
+        M2 de la Vivienda: {{IInmobiliaria.metrosVivienda}}
+        <br>
+        Numero de habitaciones: {{IInmobiliaria.numeroHabitaciones}}
+        <br>
+        Numero de baños: {{IInmobiliaria.numeroBanyos}}
+        <br>
+        Localidad de la Vivienda: {{IInmobiliaria.localidad}}
+      </ion-label>
+      <br>
+      Descripcion del producto: {{IInmobiliaria.descripcion}}
+    </ion-card-content>
+  </ion-card>
+</div>
 
-    <ion-card-content *ngIf="producto.categoria == 'Inmobiliaria'">
-      <ion-label>Metros de la vivienda: {{producto.metrosVivienda}}</ion-label>     
-    </ion-card-content>
-    <ion-card-content *ngIf="producto.categoria == 'Inmobiliaria'">
-      <ion-label>Número de baños: {{producto.numeroBanyos}}</ion-label>     
-    </ion-card-content>
-    <ion-card-content *ngIf="producto.categoria == 'Inmobiliaria'">
-      <ion-label>Número de habitaciones: {{producto.numeroHabitaciones}}</ion-label>     
-    </ion-card-content>
-    <ion-card-content *ngIf="producto.categoria == 'Inmobiliaria'">
-      <ion-label>Localidad: {{producto.localidad}}</ion-label>     
-    </ion-card-content>
-
-    <ion-card-content>    
-      <ion-label>Descripción: {{producto.descripcion}}</ion-label>
-    </ion-card-content>
+<ion-button class="boton" size='large' routerLink="/product-list">Atras</ion-button>
 
 </ion-content>
+

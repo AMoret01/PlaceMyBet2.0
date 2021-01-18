@@ -38,9 +38,8 @@ export class ProductInsertPage {
 
   hogares: (IHogar)[]=[];
   motores: (IMotor)[]=[];
-  inmuebles: (IInmobiliaria)[];
+  inmuebles: (IInmobiliaria)[]=[];
   tecnologias: (ITecnologia)[]=[];
-  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)[]=[];
 
 
   
@@ -86,18 +85,18 @@ export class ProductInsertPage {
     {
       if (this.categoria == this.tecnologia) {
         let tecnologia: ITecnologia = {
-          "id": this.id,
+          "id": this.tecnologias.length + 1,
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
           "estado": this.estado,
           "precio": this.precio
         };
-        this._productoService.setProducto(tecnologia);
+        this._productoService.setTecnologia(tecnologia);
 
       } else if (this.categoria == this.inmobiliaria) {
         let inmobiliaria: IInmobiliaria = {
-          "id": this.id,
+          "id": this.inmuebles.length + 1,
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
@@ -107,11 +106,11 @@ export class ProductInsertPage {
           "localidad": this.localidad,
           "precio": this.precio
         };
-        this._productoService.setProducto(inmobiliaria);
+        this._productoService.setInmobiliaria(inmobiliaria);
 
       } else if (this.categoria == this.motor) {
         let motor: IMotor = {
-          "id": this.id,
+          "id": this.motores.length + 1,
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
@@ -120,17 +119,17 @@ export class ProductInsertPage {
           "anyoFabricacion": this.anyoFabricacion,
           "precio": this.precio
         };
-        this._productoService.setProducto(motor);
+        this._productoService.setMotor(motor);
 
       } else if (this.categoria == this.hogar) {
         let hogar: IHogar = {
-          "id": this.id,
+          "id": this.hogares.length + 1,
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
           "precio": this.precio
         };
-        this._productoService.setProducto(hogar);
+        this._productoService.setHogar(hogar);
       }
 
     };

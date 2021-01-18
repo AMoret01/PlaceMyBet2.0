@@ -8,7 +8,7 @@ import { ProductoService } from '../services/producto.service';
   templateUrl: './product-list.page.html',
   styleUrls: ['./product-list.page.scss'],
 })
-export class ProductListPage{
+export class ProductListPage {
 
   motor: string = "Motor";
   inmobiliaria: string = "Inmobiliaria";
@@ -36,18 +36,49 @@ export class ProductListPage{
   KmVehichulo: number;
   anyoFabricacion: number;
 
-  hogares: (IHogar)[];
-  motores: (IMotor)[];
-  inmuebles: (IInmobiliaria)[];
-  tecnologias: (ITecnologia)[];
-  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia)[];
-  
-  constructor(private _toastCtrl: ToastController, private _productoService : ProductoService) {
+  hogares: (IHogar)[] = [];
+  motores: (IMotor)[] = [];
+  inmuebles: (IInmobiliaria)[] = [];
+  tecnologias: (ITecnologia)[] = [];
+
+  constructor(private _toastCtrl: ToastController, private _productoService: ProductoService) {
 
   }
 
-  ngOnInit(){
-    //this.producto = this._productoService.getProductos();
+  ngOnInit() {
+    let hogar = this._productoService.getHogares();
+    let motor = this._productoService.getMotores();
+    let inmobiliaria = this._productoService.getInmuebles();
+    let tecnología = this._productoService.getTecnologias();
+
+    hogar.once("value", snapshot => {
+      snapshot.forEach(child =>{
+        let value = child.val();
+        this.hogares.push(value);
+        console.log("He encontrado "+child.val().nombre);
+      })
+    })
+    motor.once("value", snapshot => {
+      snapshot.forEach(child =>{
+        let value = child.val();
+        this.motores.push(value);
+        console.log("He encontrado "+child.val().nombre);
+      })
+    })
+    inmobiliaria.once("value", snapshot => {
+      snapshot.forEach(child =>{
+        let value = child.val();
+        this.inmuebles.push(value);
+        console.log("He encontrado "+child.val().nombre);
+      })
+    })
+    tecnología.once("value", snapshot => {
+      snapshot.forEach(child =>{
+        let value = child.val();
+        this.tecnologias.push(value);
+        console.log("He encontrado "+child.val().nombre);
+      })
+    })
   }
 
   async presentToast() {
@@ -82,18 +113,18 @@ export class ProductListPage{
     {
       if (this.categoria == this.tecnologia) {
         let tecnologia: ITecnologia = {
-          "id": this.id,
+          "id": this.tecnologias.length + 1,
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
           "estado": this.estado,
           "precio": this.precio
         };
-        this.tecnologias.push(tecnologia);
+        this._productoService.setTecnologia(tecnologia);
 
       } else if (this.categoria == this.inmobiliaria) {
         let inmobiliaria: IInmobiliaria = {
-          "id": this.id,
+          "id": this.inmuebles.length + 1,
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
@@ -103,11 +134,11 @@ export class ProductListPage{
           "localidad": this.localidad,
           "precio": this.precio
         };
-        this.inmuebles.push(inmobiliaria);
+        this._productoService.setInmobiliaria(inmobiliaria);
 
       } else if (this.categoria == this.motor) {
         let motor: IMotor = {
-          "id": this.id,
+          "id": this.motores.length + 1,
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
@@ -116,17 +147,17 @@ export class ProductListPage{
           "anyoFabricacion": this.anyoFabricacion,
           "precio": this.precio
         };
-        this.motores.push(motor);
+        this._productoService.setMotor(motor);
 
       } else if (this.categoria == this.hogar) {
         let hogar: IHogar = {
-          "id": this.id,
+          "id": this.hogares.length + 1,
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
           "precio": this.precio
         };
-        this.hogares.push(hogar);
+        this._productoService.setHogar(hogar);
       }
 
     };
