@@ -97,9 +97,9 @@ export class ProductListPage{
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
-          "metros de la vivienda": this.metrosVivienda,
-          "numero de baños": this.numeroBanyos,
-          "numero de habitaciones": this.numeroHabitaciones,
+          "metrosVivienda": this.metrosVivienda,
+          "numeroBanyos": this.numeroBanyos,
+          "numeroHabitaciones": this.numeroHabitaciones,
           "localidad": this.localidad,
           "precio": this.precio
         };
@@ -111,9 +111,9 @@ export class ProductListPage{
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
-          "categoria motor": this.categoriaMotor,
-          "Km del vehichulo": this.KmVehichulo,
-          "año de fabricacion": this.anyoFabricacion,
+          "categoriaMotor": this.categoriaMotor,
+          "KmVehichulo": this.KmVehichulo,
+          "anyoFabricacion": this.anyoFabricacion,
           "precio": this.precio
         };
         this.motores.push(motor);
