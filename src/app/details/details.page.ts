@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IHogar,IInmobiliaria,IMotor,ITecnologia } from '../interfaces';
+import { IHogar, IInmobiliaria, IMotor, ITecnologia } from '../interfaces';
 import { ProductoService } from '../services/producto.service';
 
 @Component({
@@ -10,30 +10,34 @@ import { ProductoService } from '../services/producto.service';
 })
 export class DetailsPage implements OnInit {
 
- id: number;
- nombre: string;
- descripcion: string;
- categoria: string;
- precio: number;
- estado: string;
- metrosVivienda: number;
- numeroBanyos: number;
- numeroHabitaciones: number;
- localidad: string;
- categoriaMotor: string;
- KmVehichulo: number;
- anyoFabricacion: number;
+  id: number;
+  nombre: string;
+  descripcion: string;
+  categoria: string;
+  precio: number;
+  estado: string;
+  metrosVivienda: number;
+  numeroBanyos: number;
+  numeroHabitaciones: number;
+  localidad: string;
+  categoriaMotor: string;
+  KmVehichulo: number;
+  anyoFabricacion: number;
 
- product: (IHogar | IInmobiliaria | IMotor | ITecnologia);
+  hogares: (IHogar)[];
+  motores: (IMotor)[];
+  inmuebles: (IInmobiliaria)[];
+  tecnologias: (ITecnologia)[];
+  producto: (IHogar | IInmobiliaria | IMotor | ITecnologia);
 
-  constructor(private _activatedRoute: ActivatedRoute, private _productoService : ProductoService) { }
+  constructor(private _activatedRoute: ActivatedRoute, private _productoService: ProductoService) { }
 
   ngOnInit() {
 
     this.id = +this._activatedRoute.snapshot.paramMap.get('id');
-    console.log("He recibido un "+this.id);
+    console.log("He recibido un " + this.id);
 
-    //this.product = this._productoService.getProducto(this.id);
+    //this.producto = this._productoService.getProducto(this.id);
 
   }
 }

@@ -29,9 +29,9 @@ export class ProductoService{
           "nombre": "V8",
           "descripcion": "Motor muy potente generalmente usado para coches deportivos.",
           "categoria": "Motor",
-          "categoria motor": "Coche",
-          "Km del vehichulo": 55000,
-          "año de fabricacion": 2001,
+          "categoriaMotor": "Coche",
+          "KmVehichulo": 55000,
+          "anyoFabricacion": 2001,
           "precio": 1200
         },
         {
@@ -39,13 +39,13 @@ export class ProductoService{
           "nombre": "Apartamento",
           "descripcion": "Apartamento en primera línea de playa con unas excelentes vistas al mar.",
           "categoria": "Inmobiliaria",
-          "metros de la vivienda": 1000,
-          "numero de baños": 2,
-          "numero de habitaciones": 7,
+          "metrosVivienda": 1000,
+          "numeroBanyos": 2,
+          "numeroHabitaciones": 7,
           "localidad": "Valencia",
           "precio": 125000
         }
-      ]*/
+      ];*/
 
       constructor(private _db: AngularFireDatabase){
 
