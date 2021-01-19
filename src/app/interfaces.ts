@@ -3,6 +3,8 @@ export interface IHogar{
     "nombre" : string,
     "descripcion" : string,
     "categoria" : string,
+    "like" : number,
+    "idUsuario" : string,
     "precio" : number
 }
 

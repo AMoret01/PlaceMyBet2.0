@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>LikesList</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let item of hogares">
+    <ion-card-header>
+      <ion-card-title>Producto que me gusta</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label>Producto: {{item.nombre}}</ion-label>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-label>Usuario: {{item.idUsuario}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let item of tecnologias">
+    <ion-card-header>
+      <ion-card-title>Producto que me gusta</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label>Producto: {{item.nombre}}</ion-label>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-label>Usuario: {{item.idUsuario}}</ion-label>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card *ngFor="let item of motores">
+    <ion-card-header>
+      <ion-card-title>Producto que me gusta</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label>Producto: {{item.nombre}}</ion-label>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-label>Usuario: {{item.idUsuario}}</ion-label>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card *ngFor="let item of inmuebles">
+    <ion-card-header>
+      <ion-card-title>Producto que me gusta</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label>Producto: {{item.nombre}}</ion-label>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-label>Usuario: {{item.idUsuario}}</ion-label>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

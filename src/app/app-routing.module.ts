@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'product-insert',
     loadChildren: () => import('./product-insert/product-insert.module').then( m => m.ProductInsertPageModule)
   },
+  {
+    path: 'like',
+    loadChildren: () => import('./like/like.module').then( m => m.LikePageModule)
+  },
 ];
 
 @NgModule({

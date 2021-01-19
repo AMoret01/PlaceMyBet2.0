@@ -11,11 +11,15 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-label>Categoría: {{item.categoria}}</ion-label>     
+      <ion-label>Categoria: {{item.categoria}}</ion-label>     
     </ion-card-content>
 
     <ion-card-content>    
-      <ion-label>Descripción: {{item.descripcion}}</ion-label>
+      <ion-label>Descripcion: {{item.descripcion}}</ion-label>
+    </ion-card-content>
+
+    <ion-card-content>    
+      <ion-button color="dark" size="large" (click)="Like()">Like</ion-button>
     </ion-card-content>
 
     <ion-button expand="block" [routerLink]="['/details/',item.id,item.categoria]" routerDirection="forward">Detalles</ion-button>
@@ -27,11 +31,15 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-label>Categoría: {{item.categoria}}</ion-label>     
+      <ion-label>Categoria: {{item.categoria}}</ion-label>     
     </ion-card-content>
 
     <ion-card-content>    
-      <ion-label>Descripción: {{item.descripcion}}</ion-label>
+      <ion-label>Descripcion: {{item.descripcion}}</ion-label>
+    </ion-card-content>
+
+    <ion-card-content>    
+      <ion-button color="dark" size="large" (click)="Like()">Like</ion-button>
     </ion-card-content>
 
     <ion-button expand="block" [routerLink]="['/details/',item.id,item.categoria]" routerDirection="forward">Detalles</ion-button>
@@ -43,11 +51,15 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-label>Categoría: {{item.categoria}}</ion-label>     
+      <ion-label>Categoria: {{item.categoria}}</ion-label>     
     </ion-card-content>
 
     <ion-card-content>    
-      <ion-label>Descripción: {{item.descripcion}}</ion-label>
+      <ion-label>Descripcion: {{item.descripcion}}</ion-label>
+    </ion-card-content>
+
+    <ion-card-content>    
+      <ion-button color="dark" size="large" (click)="Like()">Like</ion-button>
     </ion-card-content>
 
     <ion-button expand="block" [routerLink]="['/details/',item.id,item.categoria]" routerDirection="forward">Detalles</ion-button>
@@ -64,6 +76,10 @@
 
     <ion-card-content>    
       <ion-label>Descripción: {{item.descripcion}}</ion-label>
+    </ion-card-content>
+
+    <ion-card-content>    
+      <ion-button color="dark" size="large" (click)="Like()">Like</ion-button>
     </ion-card-content>
 
     <ion-button expand="block" [routerLink]="['/details/',item.id,item.categoria]" routerDirection="forward">Detalles</ion-button>

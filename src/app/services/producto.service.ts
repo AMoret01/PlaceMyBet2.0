@@ -132,6 +132,84 @@ export class ProductoService {
     return ref;
   }
 
+  getHogaresLike(): firebase.default.database.Reference {
+    let ref = this._db.database.ref("productos/Like");
+    return ref;
+  }
+  getMotoresLike(): firebase.default.database.Reference {
+    let ref = this._db.database.ref("productos/Like");
+    return ref;
+  }
+  getInmueblesLike(): firebase.default.database.Reference {
+    let ref = this._db.database.ref("productos/Like");
+    return ref;
+  }
+  getTecnologiasLike(): firebase.default.database.Reference {
+    let ref = this._db.database.ref("productos/Like");
+    return ref;
+  }
+  listTecnologiasLike() {
+    let ref = this.getTecnologiasLike();
+    ref.once("value", snapshot => {
+      snapshot.forEach(child => {
+        let value = child.val();
+        this.tecnologias.push(value);
+        console.log("He encontrado " + child.val().nombre)
+      });
+    })
+  }
+  listHogaresLike() {
+    let ref = this.getHogaresLike();
+    ref.once("value", snapshot => {
+      snapshot.forEach(child => {
+        let value = child.val();
+        this.hogares.push(value);
+        console.log("He encontrado " + child.val().nombre)
+      });
+    })
+  }
+  listMotoresLike() {
+    let ref = this.getMotoresLike();
+    ref.once("value", snapshot => {
+      snapshot.forEach(child => {
+        let value = child.val();
+        this.motores.push(value);
+        console.log("He encontrado " + child.val().nombre)
+      });
+    })
+  }
+  listInmueblesLike() {
+    let ref = this.getInmueblesLike();
+    ref.once("value", snapshot => {
+      snapshot.forEach(child => {
+        let value = child.val();
+        this.inmuebles.push(value);
+        console.log("He encontrado " + child.val().nombre)
+      });
+    })
+  }
+  setHogarLike(hogar: IHogar) {
+    let ref = this._db.database.ref("productos/Like");
+    let res = ref.push(hogar);
+    console.log("He insertado " + res.key);
+  }
+  setTecnologiaLike(tecnologia: ITecnologia) {
+    let ref = this._db.database.ref("productos/Like");
+    let res = ref.push(tecnologia);
+    console.log("He insertado " + res.key);
+  }
+  setMotorLike(motor: IHogar) {
+    let ref = this._db.database.ref("productos/Like");
+    let res = ref.push(motor);
+    console.log("He insertado " + res.key);
+  }
+
+  setInmobiliariaLike(inmobiliaria: IInmobiliaria) {
+    let ref = this._db.database.ref("productos/Like");
+    let res = ref.push(inmobiliaria);
+    console.log("He insertado " + res.key);
+  }
+
   getHogaresId (id : number) : IHogar {
     return this.hogares.find(x => x.id == id)
   }
@@ -144,7 +222,7 @@ export class ProductoService {
   getInmueblesId (id : number) : IInmobiliaria {
     return this.inmuebles.find(x => x.id == id)
   }
-
+  
   setHogar(hogar: IHogar) {
     let ref = this._db.database.ref("productos/Hogar");
     let res = ref.push(hogar);

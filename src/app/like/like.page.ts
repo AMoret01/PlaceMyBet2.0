@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IHogar, IMotor, IInmobiliaria, ITecnologia } from '../interfaces';
 import { ToastController } from '@ionic/angular';
 import { ProductoService } from '../services/producto.service';
 
 @Component({
-  selector: 'app-product-insert',
-  templateUrl: './product-insert.page.html',
-  styleUrls: ['./product-insert.page.scss'],
+  selector: 'app-like',
+  templateUrl: './like.page.html',
+  styleUrls: ['./like.page.scss'],
 })
-export class ProductInsertPage {
+export class LikePage implements OnInit {
 
   motor: string = "Motor";
   inmobiliaria: string = "Inmobiliaria";
-  tecnologia: string = "Tecnología";
+  tecnologia: string = "Tecnologia";
   hogar: string = "Hogar";
 
   placeHolder: string = "";
@@ -35,25 +35,70 @@ export class ProductInsertPage {
   categoriaMotor: string;
   KmVehichulo: number;
   anyoFabricacion: number;
-  like: boolean = true;
+  like: number;
   idUsuario: string = "Alejandro";
 
-  hogares: (IHogar)[]=[];
-  motores: (IMotor)[]=[];
-  inmuebles: (IInmobiliaria)[]=[];
-  tecnologias: (ITecnologia)[]=[];
+  hogares: (IHogar)[] = [];
+  motores: (IMotor)[] = [];
+  inmuebles: (IInmobiliaria)[] = [];
+  tecnologias: (ITecnologia)[] = [];
 
-
-  
-  constructor(private _toastCtrl: ToastController, private _productoService : ProductoService) {
+  constructor(private _toastCtrl: ToastController, private _productoService: ProductoService) {
 
   }
 
-  ngOnInit(){
-    //this.producto = this._productoService.getProductos();
+  ngOnInit() {
+    let hogar = this._productoService.getHogaresLike();
+    let motor = this._productoService.getMotoresLike();
+    let inmobiliaria = this._productoService.getInmueblesLike();
+    let tecnología = this._productoService.getTecnologiasLike();
+
+    hogar.once("value", snapshot => {
+      snapshot.forEach(child =>{
+        let value = child.val();
+        this.hogares.push(value);
+        console.log("He encontrado "+child.val().nombre);
+      })
+    })
+    motor.once("value", snapshot => {
+      snapshot.forEach(child =>{
+        let value = child.val();
+        this.motores.push(value);
+        console.log("He encontrado "+child.val().nombre);
+      })
+    })
+    inmobiliaria.once("value", snapshot => {
+      snapshot.forEach(child =>{
+        let value = child.val();
+        this.inmuebles.push(value);
+        console.log("He encontrado "+child.val().nombre);
+      })
+    })
+    tecnología.once("value", snapshot => {
+      snapshot.forEach(child =>{
+        let value = child.val();
+        this.tecnologias.push(value);
+        console.log("He encontrado "+child.val().nombre);
+      })
+    })
   }
 
-
+  async presentToast() {
+    const toast = await this._toastCtrl.create({
+      message: 'El producto se ha insertado correctamente.',
+      duration: 1000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+  async presentToastLike() {
+    const toast = await this._toastCtrl.create({
+      message: 'Le ha gustado el producto.',
+      duration: 1000,
+      position: 'bottom'
+    });
+    toast.present;
+  }
   Visible(): void {
     if (this.categoria == this.tecnologia) {
       this.TecnologiaOculto = false
@@ -72,15 +117,6 @@ export class ProductInsertPage {
       this.MotorOculto = true
       this.InmobiliariaOculto = true
     }
-  }
-
-  async presentToast() {
-    const toast = await this._toastCtrl.create({
-      message: 'El producto se ha insertado correctamente.',
-      duration: 1000,
-      position: 'bottom'
-    });
-    toast.present();
   }
 
   insertar() {

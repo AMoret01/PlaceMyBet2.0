@@ -12,7 +12,7 @@ export class ProductListPage {
 
   motor: string = "Motor";
   inmobiliaria: string = "Inmobiliaria";
-  tecnologia: string = "Tecnologia";
+  tecnologia: string = "Tecnología";
   hogar: string = "Hogar";
 
   placeHolder: string = "";
@@ -35,6 +35,8 @@ export class ProductListPage {
   categoriaMotor: string;
   KmVehichulo: number;
   anyoFabricacion: number;
+  like: number;
+  idUsuario: string = "Alejandro";
 
   hogares: (IHogar)[] = [];
   motores: (IMotor)[] = [];
@@ -49,34 +51,34 @@ export class ProductListPage {
     let hogar = this._productoService.getHogares();
     let motor = this._productoService.getMotores();
     let inmobiliaria = this._productoService.getInmuebles();
-    let tecnología = this._productoService.getTecnologias();
+    let tecnologia = this._productoService.getTecnologias();
 
     hogar.once("value", snapshot => {
       snapshot.forEach(child =>{
         let value = child.val();
         this.hogares.push(value);
-        console.log("He encontrado "+child.val().nombre);
+        console.log("He encontrado "+child.val().id);
       })
     })
     motor.once("value", snapshot => {
       snapshot.forEach(child =>{
         let value = child.val();
         this.motores.push(value);
-        console.log("He encontrado "+child.val().nombre);
+        console.log("He encontrado "+child.val().id);
       })
     })
     inmobiliaria.once("value", snapshot => {
       snapshot.forEach(child =>{
         let value = child.val();
         this.inmuebles.push(value);
-        console.log("He encontrado "+child.val().nombre);
+        console.log("He encontrado "+child.val().id);
       })
     })
-    tecnología.once("value", snapshot => {
+    tecnologia.once("value", snapshot => {
       snapshot.forEach(child =>{
         let value = child.val();
         this.tecnologias.push(value);
-        console.log("He encontrado "+child.val().nombre);
+        console.log("He encontrado "+child.val().id);
       })
     })
   }
@@ -88,6 +90,14 @@ export class ProductListPage {
       position: 'bottom'
     });
     toast.present();
+  }
+  async presentToastLike() {
+    const toast = await this._toastCtrl.create({
+      message: 'Le ha gustado el producto.',
+      duration: 1000,
+      position: 'bottom'
+    });
+    toast.present;
   }
   Visible(): void {
     if (this.categoria == this.tecnologia) {
@@ -108,6 +118,69 @@ export class ProductListPage {
       this.InmobiliariaOculto = true
     }
   }
+  Like() {
+    {
+      if (this.categoria == this.tecnologia) {
+        let tecnologia: ITecnologia = {
+          "id": this.tecnologias.length + 1,
+          "nombre": this.nombre,
+          "descripcion": this.descripcion,
+          "categoria": this.categoria,
+          "estado": this.estado,
+          "like": this.like,
+          "idUsuario": this.idUsuario,
+          "precio": this.precio
+        };
+        this._productoService.setTecnologiaLike(tecnologia);
+
+      } else if (this.categoria == this.inmobiliaria) {
+        let inmobiliaria: IInmobiliaria = {
+          "id": this.inmuebles.length + 1,
+          "nombre": this.nombre,
+          "descripcion": this.descripcion,
+          "categoria": this.categoria,
+          "metrosVivienda": this.metrosVivienda,
+          "numeroBanyos": this.numeroBanyos,
+          "numeroHabitaciones": this.numeroHabitaciones,
+          "localidad": this.localidad,
+          "like": this.like,
+          "idUsuario": this.idUsuario,
+          "precio": this.precio
+        };
+        this._productoService.setInmobiliariaLike(inmobiliaria);
+
+      } else if (this.categoria == this.motor) {
+        let motor: IMotor = {
+          "id": this.motores.length + 1,
+          "nombre": this.nombre,
+          "descripcion": this.descripcion,
+          "categoria": this.categoria,
+          "categoriaMotor": this.categoriaMotor,
+          "KmVehichulo": this.KmVehichulo,
+          "anyoFabricacion": this.anyoFabricacion,
+          "like": this.like,
+          "idUsuario": this.idUsuario,
+          "precio": this.precio
+        };
+        this._productoService.setMotorLike(motor);
+
+      } else if (this.categoria == this.hogar) {
+        let hogar: IHogar = {
+          "id": this.hogares.length + 1,
+          "nombre": this.nombre,
+          "descripcion": this.descripcion,
+          "categoria": this.categoria,
+          "like": this.like,
+          "idUsuario": this.idUsuario,
+          "precio": this.precio
+        };
+        this._productoService.setHogarLike(hogar);
+      }
+
+    };
+
+    this.presentToastLike();
+  }
 
   insertar() {
     {
@@ -118,6 +191,8 @@ export class ProductListPage {
           "descripcion": this.descripcion,
           "categoria": this.categoria,
           "estado": this.estado,
+          "like": this.like,
+          "idUsuario": this.idUsuario,
           "precio": this.precio
         };
         this._productoService.setTecnologia(tecnologia);
@@ -132,6 +207,8 @@ export class ProductListPage {
           "numeroBanyos": this.numeroBanyos,
           "numeroHabitaciones": this.numeroHabitaciones,
           "localidad": this.localidad,
+          "like": this.like,
+          "idUsuario": this.idUsuario,
           "precio": this.precio
         };
         this._productoService.setInmobiliaria(inmobiliaria);
@@ -145,6 +222,8 @@ export class ProductListPage {
           "categoriaMotor": this.categoriaMotor,
           "KmVehichulo": this.KmVehichulo,
           "anyoFabricacion": this.anyoFabricacion,
+          "like": this.like,
+          "idUsuario": this.idUsuario,
           "precio": this.precio
         };
         this._productoService.setMotor(motor);
@@ -155,6 +234,8 @@ export class ProductListPage {
           "nombre": this.nombre,
           "descripcion": this.descripcion,
           "categoria": this.categoria,
+          "like": this.like,
+          "idUsuario": this.idUsuario,
           "precio": this.precio
         };
         this._productoService.setHogar(hogar);
